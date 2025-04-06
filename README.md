@@ -1,2 +1,2 @@
 # p6-bachelor
-Hallo
+The read me file
