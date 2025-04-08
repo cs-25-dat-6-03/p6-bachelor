@@ -5,7 +5,24 @@ filepath = "dataset/"
 movies = pd.read_csv(filepath + "movies.csv")
 ratings = pd.read_csv(filepath + "ratings.csv")
 
-print(ratings.head())
+#print(movies.head())
+#print(ratings.head())
+
+
+# Columns rename
+new_ratings = pd.read_csv(filepath + "ratings.csv")
+new_ratings.columns = ["User ID", "Movie ID", "RatingS", "Timestamp"]
+
+#print(new_ratings.head())
+
+
+# Read CSV in chunks
+counter = 1
+for chunk in pd.read_csv(filepath + "ratings.csv", chunksize=1000):
+    #print(chunk)
+    if counter == 3:
+        break
+    counter+=1
 
 
 # More data analysis
@@ -27,13 +44,22 @@ highest_rated = movie_ratings["title"].value_counts()[0:10]
 #print(highest_rated)
 
 
+# Sort by movieId instead of userId
+sorted_ratings = movie_ratings.sort_values(by="movieId")
+
+#print(sorted_ratings)
+
+
+# Show only movieId 1
+value1 = sorted_ratings.loc[sorted_ratings["movieId"] == 1]
+
+#print(value1) 
+
+
 # Lowest and Highest average movie rating
-mean_ratings = ratings.groupby("movieId")[["rating"]].mean()
+mean_ratings = movie_ratings.groupby("movieId")[["rating"]].mean()
 lowest_rated = mean_ratings["rating"].idxmin()
 highest_rated = mean_ratings["rating"].idxmax()
 
 #print(movies[movies["movieId"] == lowest_rated])
 #print(movies[movies["movieId"] == highest_rated])
-
-
-
