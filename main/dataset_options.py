@@ -29,10 +29,12 @@ for chunk in pd.read_csv(filepath + "ratings.csv", chunksize=1000):
 number_of_ratings = len(ratings)
 number_of_unique_movies = ratings["movieId"].nunique()
 number_of_unique_users = ratings["userId"].nunique()
+number_of_unique_ratings = ratings["rating"].drop_duplicates().sort_values(ascending=[False])
 
 #print(f"Number of ratings: {number_of_ratings}")
 #print(f"Number of unique movieId's: {number_of_unique_movies}")
 #print(f"Number of unique users: {number_of_unique_users}")
+print(f"Number of unique ratings:\n{number_of_unique_ratings}")
 #print(f"Average number of ratings per user: {round(number_of_ratings/number_of_unique_users, 2)}")
 #print(f"Average number of ratings per movie: {round(number_of_ratings/number_of_unique_movies, 2)}")
 
