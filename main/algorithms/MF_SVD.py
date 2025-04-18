@@ -11,12 +11,18 @@ filepath = "dataset/"
 df = pd.read_csv(filepath + "ratings.csv")
 movies_df = pd.read_csv(filepath + "movies.csv")
 
+output_file = "output.txt"
+
 # Find the longest movie name
 #longest_movie = movies_df.loc[movies_df['title'].str.len().idxmax()]
 
 # Print the result
 #print(f"\n\nLongest movie name: {longest_movie['title']}")
 #print(f"Length: {len(longest_movie['title'])}")
+
+user_id = 3  # Replace with the desired user ID
+movie_ratings = df.merge(movies_df, on="movieId")
+user_rated_movies = movie_ratings[movie_ratings['userId'] == user_id]
 
 # Define a Reader - note that rating_scale is customizable
 reader = Reader(rating_scale=(0.5, 5.0))
@@ -53,16 +59,24 @@ def get_top_n_with_titles(predictions, movies_df, n=10):
         for movie_id, rating in movies:
             title_row = movies_df[movies_df['movieId'] == movie_id]
             title = title_row['title'].values[0] if not title_row.empty else "Unknown"
-            top_n_titles[uid].append((title, rating))
+            genres = title_row['genres'].values[0] if not title_row.empty else "Unknown"
+            top_n_titles[uid].append((title, rating, genres))
 
+    print(title_row['genres'].values[0])
     return top_n_titles
 
 # Get top 10 recommendations with titles
 top_n_titles = get_top_n_with_titles(predictions, movies_df, n=10)
 
 # Show top movies for a user
-user_id = 1
+#user_id = 3
 print(f"Top recommendations for user {user_id}:\n")
-for title, rating in top_n_titles[user_id]:
-    print(f"{title} — Predicted Rating: {rating:.2f}")
+for title, rating, genres in top_n_titles[user_id]:
+    print(f"{title} - {genres} - Predicted Rating: {rating:.2f}")
 
+with open(filepath + output_file, 'w') as file:
+    file.write(f"Movies rated by user {user_id}:\n\n")
+    file.write(user_rated_movies[['movieId', 'rating', 'title', 'genres']].to_string())
+    file.write(f"\n\n\nTop recommendations for user {user_id}:\n\n")
+    for title, rating, genres in top_n_titles[user_id]:
+        file.write(f"{title} - {genres} - Predicted Rating: {rating:.2f}\n")
