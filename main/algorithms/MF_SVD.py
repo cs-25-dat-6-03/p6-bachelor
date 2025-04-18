@@ -36,9 +36,10 @@ R = np.array([
     [5, 3, 0, 1],
     [4, 0, 0, 1],
     [1, 1, 0, 5],
-    [1, 0, 0, 4],
-    [0, 1, 5, 4],
-    ])
+    [0, 0, 5, 4],
+    [0, 1, 5, 4]
+])
 
 # Assigning it to the real matrix instead of example matrix
-R = rating_matrix
+#R = rating_matrix
+
