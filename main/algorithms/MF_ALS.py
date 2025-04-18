@@ -42,12 +42,12 @@ R = np.array([
 
 # Assigning it to the real matrix instead of example matrix
 R = rating_matrix
-print(R)
+print(R, "\n")
 
 num_users, num_items = R.shape
 num_iters = 50 
 lamb = 0.1 # Used for overfitting
-num_features = 19 
+num_features = 100 
 
 U = np.random.rand(num_users, num_features)
 V = np.random.rand(num_items, num_features)

@@ -1,64 +1,59 @@
-from surprise import Dataset, Reader
-from surprise.prediction_algorithms.matrix_factorization import SVD
-from surprise import accuracy
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder, MultiLabelBinarizer
-from sklearn.model_selection import train_test_split
+import numpy as np
+from surprise import SVD
+from surprise import Dataset, Reader
+from surprise.model_selection import train_test_split, cross_validate
+from typing import Dict, Any
 
 # File handling
 filepath = "dataset/"
-movies_df = pd.read_csv(filepath + "movies.csv")
-ratings_df = pd.read_csv(filepath + "ratings.csv")
+movies = pd.read_csv(filepath + "movies.csv")
+ratings = pd.read_csv(filepath + "ratings.csv")
 
-df = pd.merge(ratings_df, movies_df[['movieId', 'genres']], on = 'movieId', how = 'left')
+movie_ratings = ratings.merge(movies, on="movieId")
+ratings_df = movie_ratings[['userId', 'movieId', 'rating']]
 
-user_encoder = LabelEncoder()
-movie_encoder = LabelEncoder()
-mlb = MultiLabelBinarizer()
+# Determine the number of users and movies
+num_users = ratings_df['userId'].max()
+num_movies = ratings_df['movieId'].max()
 
-df['userId'] = user_encoder.fit_transform(df['userId'])
-df['movieId'] = movie_encoder.fit_transform(df['movieId'])
+#print(num_users)
+#print(num_movies)
 
-df = df.join(pd.DataFrame(mlb.fit_transform(df.pop('genres').str.split('|')), columns = mlb.classes_, index = df.index ))
-     
-df.drop(columns = "(no genres listed)", inplace = True)
+# Create the NumPy matrix
+rating_matrix = np.zeros((num_users, num_movies))
 
-train_df, test_df = train_test_split(df, test_size = 0.2)
+# Fill the matrix with ratings
+for row in ratings_df.itertuples():
+    rating_matrix[row.userId - 1, row.movieId - 1] = row.rating
 
-reader = Reader(rating_scale = (0.5, 5))
-data = Dataset.load_from_df(train_df[['userId', 'movieId', 'rating']], reader)
-trainset = data.build_full_trainset()
+#user = 391
+#movie = 2275
 
-model_svd = SVD()
-model_svd.fit(trainset)
+#print(rating_matrix)
+#print(rating_matrix[user-1,movie-1])
 
-predictions_svd = model_svd.test(trainset.build_anti_testset())
-accuracy.rmse(predictions_svd)
+#exit(1)
 
-def get_top_n_recommendations(user_id, n=5):
-    user_movies = df[df['userId'] == user_id]['movieId'].unique()
-    all_movies = df['movieId'].unique()
-    movies_to_predict = list(set(all_movies) - set(user_movies))
+# Example matrix
+R = np.array([
+    [5, 3, 0, 1],
+    [4, 0, 0, 1],
+    [1, 1, 0, 5],
+    [0, 0, 5, 4],
+    [0, 1, 5, 4]
+])
 
-    user_movie_pairs = [(user_id, movie_id, 0) for movie_id in movies_to_predict]
-    predictions_cf = model_svd.test(user_movie_pairs)
+# Assigning it to the real matrix instead of example matrix
+R = rating_matrix
 
-    top_n_recommendations = sorted(predictions_cf, key = lambda x: x.est)[:n]
-
-    for pred in top_n_recommendations:
-       predicted_rating = pred.est
-    print(predicted_rating)
+print(R, "\n")
 
 
-    top_n_movie_ids = [int(pred.iid) for pred in top_n_recommendations]
+reader = Reader(rating_scale=(1, 5))
+data = Dataset.load_from_df(ratings[['userId', 'movieId', 'rating']], reader)
 
-    top_n_movies = movie_encoder.inverse_transform(top_n_movie_ids)
+trainset, testset = train_test_split(data, test_size=0.25)
 
-    return top_n_movies
+U, S, VT = np.linalg.svd(rating_matrix, full_matrices=False)
 
-user_id = 1
-recommendations = get_top_n_recommendations(user_id)
-top_n_movies_titles = movies_df[movies_df['movieId'].isin(recommendations)]['title'].tolist()
-print(f"Top 5 Recommendations for User {user_id}:")
-for i, title in enumerate(top_n_movies_titles, 1):
-  print(f"{i}.{title}")
