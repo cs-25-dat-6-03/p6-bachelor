@@ -58,9 +58,10 @@ def get_top_n_with_titles(predictions, movies_df, n=10):
     for uid, movies in top_n.items():
         for movie_id, rating in movies:
             title_row = movies_df[movies_df['movieId'] == movie_id]
+            mid = title_row['movieId'].values[0] if not title_row.empty else "Unknown"
             title = title_row['title'].values[0] if not title_row.empty else "Unknown"
             genres = title_row['genres'].values[0] if not title_row.empty else "Unknown"
-            top_n_titles[uid].append((title, rating, genres))
+            top_n_titles[uid].append((mid, title, rating, genres))
 
     print(title_row['genres'].values[0])
     return top_n_titles
@@ -71,12 +72,12 @@ top_n_titles = get_top_n_with_titles(predictions, movies_df, n=10)
 # Show top movies for a user
 #user_id = 3
 print(f"Top recommendations for user {user_id}:\n")
-for title, rating, genres in top_n_titles[user_id]:
-    print(f"{title} - {genres} - Predicted Rating: {rating:.2f}")
+for mid, title, rating, genres in top_n_titles[user_id]:
+    print(f"{mid} - {title} - {genres} - Predicted Rating: {rating:.2f}")
 
 with open(filepath + output_file, 'w') as file:
     file.write(f"Movies rated by user {user_id}:\n\n")
     file.write(user_rated_movies[['movieId', 'rating', 'title', 'genres']].to_string())
     file.write(f"\n\n\nTop recommendations for user {user_id}:\n\n")
-    for title, rating, genres in top_n_titles[user_id]:
-        file.write(f"{title} - {genres} - Predicted Rating: {rating:.2f}\n")
+    for mid, title, rating, genres in top_n_titles[user_id]:
+        file.write(f"{mid} - {title} - {genres} - Predicted Rating: {rating:.2f}\n")
