@@ -52,8 +52,9 @@ def svd_with_deflation(A, num_singular_values=1, max_iter=100, tol=1e-6):
     Sigma = np.array(eigen_values)[sorted_indices]
     Vt = np.array(eigen_vectors)[sorted_indices]
 
-    # Calculate Sigma
+    # Replace zeros in Sigma with a small epsilon to avoid division by zero
     Sigma = np.sqrt(eigen_values)
+    Sigma[Sigma == 0] = 1e-10
 
     # Assemble U, Sigma, and V^T
     U = A.dot(eigen_vectors) / Sigma

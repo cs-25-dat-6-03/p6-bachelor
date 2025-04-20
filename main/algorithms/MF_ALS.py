@@ -60,6 +60,9 @@ def update_U(R, U, V):
         V_rated = V[rated_items]
         R_u = R[u, rated_items] # Original matrix without the 0s
 
+        print(R_u)
+        exit(1)
+
         # Solve for user features (least squares)
         A = V_rated.T @ V_rated + lamb * np.eye(num_features)
         b = V_rated.T @ R_u
