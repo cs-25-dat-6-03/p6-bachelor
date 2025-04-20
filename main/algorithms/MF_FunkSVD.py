@@ -17,14 +17,47 @@ R = np.array([
     [0, 1, 5, 4],
     ])
 
-def FunkSVD():
-    return 0
+# Determine the number of users and movies
+num_users = ratings['userId'].max()
+num_movies = ratings['movieId'].max()
 
-R = np.array(R)
-N = len(R)
-M = len(R[0])
-K = 20 # Features
-num_iter = 250
+print(num_users)
+print(num_movies)
 
-P = np.random.rand(N,K)
-Q = np.random.rand(M,K)
+# Create User Item matrix
+rating_matrix = np.zeros((num_users, num_movies))
+
+# Fill the matrix with ratings
+for row in ratings.itertuples():
+    rating_matrix[row.userId - 1, row.movieId - 1] = row.rating
+
+rating_matrix = rating_matrix[:5,:]
+print(rating_matrix)
+
+features = 20 # Features
+num_iter = 250 # Iterations
+alpha = 0.01
+
+user_matrix = np.random.rand(num_users,features)
+movie_matrix = np.random.rand(features,num_movies)
+
+sse = 0
+for iterations in range(num_iter):
+    old_sse = sse
+    sse = 0
+
+    for i in range(5):
+        for j in range(10):
+            if rating_matrix[i,j] > 0:
+                diff = rating_matrix[i,j] - np.dot(user_matrix[i,:], movie_matrix[:,j])
+                sse += diff**2
+
+                for k in range(features):
+                    user_matrix[i,k] += alpha * (2*diff*movie_matrix[k,j])
+                    movie_matrix[k,j] += alpha * (2*diff*user_matrix[i,k])
+            #print(j)
+        #print(i)
+    #print("%d \t\t %f" % (iterations+1, sse))
+
+result = np.round(user_matrix @ movie_matrix,2)
+print(result[:5,:])

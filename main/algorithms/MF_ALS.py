@@ -9,6 +9,10 @@ ratings = pd.read_csv(filepath + "ratings.csv")
 movie_ratings = ratings.merge(movies, on="movieId")
 ratings_df = movie_ratings[['userId', 'movieId', 'rating']]
 
+# Normalize ratings to a 0-1 scale
+min = ratings_df["rating"].min()
+max = ratings_df["rating"].max()
+
 # Determine the number of users and movies
 num_users = ratings_df['userId'].max()
 num_movies = ratings_df['movieId'].max()
@@ -47,7 +51,7 @@ print(R, "\n")
 num_users, num_items = R.shape
 num_iters = 50 
 lamb = 0.1 # Used for overfitting
-num_features = 100 
+num_features = 20 
 
 U = np.random.rand(num_users, num_features)
 V = np.random.rand(num_items, num_features)
@@ -59,9 +63,6 @@ def update_U(R, U, V):
         rated_items = R[u, :] > 0
         V_rated = V[rated_items]
         R_u = R[u, rated_items] # Original matrix without the 0s
-
-        print(R_u)
-        exit(1)
 
         # Solve for user features (least squares)
         A = V_rated.T @ V_rated + lamb * np.eye(num_features)
