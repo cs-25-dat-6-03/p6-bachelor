@@ -21,11 +21,9 @@ print(num_users, num_movies, "\n")
 num_users = ratings_df['userId'].unique()
 num_movies = ratings_df['movieId'].unique()
 print(num_users.shape, num_movies.shape, "\n")
+print(np.sort(num_movies))
 
-sorted_ratings = ratings.sort_values(by="movieId")
-print(sorted_ratings["movieId"])
 
-exit(1)
 
 #print(num_users)
 #print(num_movies)
