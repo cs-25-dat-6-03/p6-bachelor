@@ -52,7 +52,7 @@ V = np.random.rand(num_items, num_features)
 def update_U(R, U, V): # U_i = (V_j * V_j^T + lambda * I)^-1 * R_ij * V_j^T
     for u in range(num_users):
         # Get indices of items user u has rated
-        rated_items = R[u, :] >= 0.5
+        rated_items = R[u, :] > 0
         V_rated = V[rated_items]
         R_u = R[u, rated_items] # Original matrix without the 0s
 
@@ -64,7 +64,7 @@ def update_U(R, U, V): # U_i = (V_j * V_j^T + lambda * I)^-1 * R_ij * V_j^T
 def update_V(R, U, V): # V_j = (U_i * U_i^T + lambda * I)^-1 * R_ij * U_i^T
     for i in range(num_items):
         # Get indices of users who rated item i
-        rated_by = R[:, i] >= 0.5
+        rated_by = R[:, i] > 0
         U_rated = U[rated_by]
         R_i = R[rated_by, i]
 
