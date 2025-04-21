@@ -21,11 +21,8 @@ trainset, testset = train_test_split(data, test_size=.25)
 model = SVD(n_factors=100)
 model.fit(trainset)
 
-user_id = 3
-movie_id = 31
+user_id = 608
+movie_id = 1
 
 result = model.predict(user_id, movie_id)
 print(f"\nPredicted rating for user {user_id} and movie {movie_id}: {result.est:.2f}")
-
-
-

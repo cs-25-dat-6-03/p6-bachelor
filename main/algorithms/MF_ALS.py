@@ -16,6 +16,16 @@ max = ratings_df["rating"].max()
 # Determine the number of users and movies
 num_users = ratings_df['userId'].max()
 num_movies = ratings_df['movieId'].max()
+print(num_users, num_movies, "\n")
+
+num_users = ratings_df['userId'].unique()
+num_movies = ratings_df['movieId'].unique()
+print(num_users.shape, num_movies.shape, "\n")
+
+sorted_ratings = ratings.sort_values(by="movieId")
+print(sorted_ratings["movieId"])
+
+exit(1)
 
 #print(num_users)
 #print(num_movies)
@@ -56,31 +66,36 @@ num_features = 20
 U = np.random.rand(num_users, num_features)
 V = np.random.rand(num_items, num_features)
 
-# Alternating Least Squares (ALS)
-def update_U(R, U, V):
+# Alternating Least Squares (ALS) 
+def update_U(R, U, V): # U_i = (SUM V_j * V_j^T + lambda * I)^-1 * (SUM R_ij * V_j)
     for u in range(num_users):
-        idx = R[u] > 0
-        V_r = V[idx]
-        R_u = R[u, idx]
+        # Get indices of items user u has rated
+        rated_items = R[u, :] > 0
+        V_rated = V[rated_items]
+        R_u = R[u, rated_items] # Original matrix without the 0s
 
-        A = V_r.T @ V_r + lamb * np.eye(num_features)
-        b = V_r.T @ R_u
-        U[u] = np.linalg.solve(A, b)
+        # Solve for user features (least squares)
+        A = V_rated.T @ V_rated + lamb * np.eye(num_features)
+        b = V_rated.T @ R_u
+        U[u] = np.linalg.solve(A, b) # Instead of inverse of matrix (^-1), we use Ax = b linear algorithm (faster and more accurate)
 
-def update_V(R, U, V):
+def update_V(R, U, V): # V_j = (SUM U_i * U_i^T + lambda * I)^-1 * (SUM R_ij * U_i)
     for i in range(num_items):
-        idx = R[:, i] > 0
-        U_r = U[idx]
-        R_i = R[idx, i]
+        # Get indices of users who rated item i
+        rated_by = R[:, i] > 0
+        U_rated = U[rated_by]
+        R_i = R[rated_by, i]
 
-        A = U_r.T @ U_r + lamb * np.eye(num_features)
-        b = U_r.T @ R_i
+        # Solve for item features
+        A = U_rated.T @ U_rated + lamb * np.eye(num_features)
+        b = U_rated.T @ R_i
         V[i] = np.linalg.solve(A, b)
 
 def compute_rmse(R, U, V):
-    mask = R > 0
-    pred = U @ V.T
-    return np.sqrt(np.mean((R[mask] - pred[mask])**2))
+    prediction = U @ V.T
+    non_zero = R > 0
+    error = R[non_zero] - prediction[non_zero]
+    return np.sqrt(np.mean(error ** 2))
 
 def als():
     for i in range(num_iters):
