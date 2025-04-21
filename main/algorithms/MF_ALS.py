@@ -59,33 +59,28 @@ V = np.random.rand(num_items, num_features)
 # Alternating Least Squares (ALS)
 def update_U(R, U, V):
     for u in range(num_users):
-        # Get indices of items user u has rated
-        rated_items = R[u, :] > 0
-        V_rated = V[rated_items]
-        R_u = R[u, rated_items] # Original matrix without the 0s
+        idx = R[u] > 0
+        V_r = V[idx]
+        R_u = R[u, idx]
 
-        # Solve for user features (least squares)
-        A = V_rated.T @ V_rated + lamb * np.eye(num_features)
-        b = V_rated.T @ R_u
+        A = V_r.T @ V_r + lamb * np.eye(num_features)
+        b = V_r.T @ R_u
         U[u] = np.linalg.solve(A, b)
 
 def update_V(R, U, V):
     for i in range(num_items):
-        # Get indices of users who rated item i
-        rated_by = R[:, i] > 0
-        U_rated = U[rated_by]
-        R_i = R[rated_by, i]
+        idx = R[:, i] > 0
+        U_r = U[idx]
+        R_i = R[idx, i]
 
-        # Solve for item features
-        A = U_rated.T @ U_rated + lamb * np.eye(num_features)
-        b = U_rated.T @ R_i
+        A = U_r.T @ U_r + lamb * np.eye(num_features)
+        b = U_r.T @ R_i
         V[i] = np.linalg.solve(A, b)
 
 def compute_rmse(R, U, V):
-    prediction = U @ V.T
-    non_zero = R > 0
-    error = R[non_zero] - prediction[non_zero]
-    return np.sqrt(np.mean(error ** 2))
+    mask = R > 0
+    pred = U @ V.T
+    return np.sqrt(np.mean((R[mask] - pred[mask])**2))
 
 def als():
     for i in range(num_iters):
@@ -93,8 +88,11 @@ def als():
         update_V(R, U, V)
 
         rmse = compute_rmse(R, U, V)
-        print(f"Iteration {i+1}: RMSE = {rmse:.4f}")
+        print(f"[ALS] Iteration {i+1}: RMSE = {rmse:.4f}")
 
 als()
 predicted_R = U @ V.T
 print(f"\n{np.round(predicted_R, 2)}")
+
+output_file = "output.txt"
+#np.savetxt(filepath + output_file, np.round(predicted_R, 2), fmt="%.2f", delimiter=",")

@@ -26,6 +26,9 @@ for row in ratings_df.itertuples():
     i = item2index[row.movieId]
     R[u, i] = row.rating
 
+print(R.shape, "\n")
+exit(1)
+
 # === 4. ALS Implementation ===
 def als(R, num_iters=20, num_features=20, lamb=0.1):
     U = np.random.rand(n_users, num_features)
@@ -61,68 +64,21 @@ def als(R, num_iters=20, num_features=20, lamb=0.1):
 
     return U, V
 
-U_als, V_als = als(R, num_iters=20)
-
-# === 5. Manual SVD Implementation ===
-def train_svd(ratings_df, n_factors=20, n_epochs=20, lr=0.005, reg=0.02):
-    global_mean = ratings_df['rating'].mean()
-    user_bias = np.zeros(n_users)
-    item_bias = np.zeros(n_items)
-    P = np.random.normal(scale=0.1, size=(n_users, n_factors))
-    Q = np.random.normal(scale=0.1, size=(n_items, n_factors))
-
-    ratings_indexed = [
-        (user2index[row.userId], item2index[row.movieId], row.rating)
-        for row in ratings_df.itertuples()
-    ]
-
-    for epoch in range(n_epochs):
-        np.random.shuffle(ratings_indexed)
-        for u, i, r_ui in ratings_indexed:
-            pred = global_mean + user_bias[u] + item_bias[i] + np.dot(P[u], Q[i])
-            err = r_ui - pred
-
-            user_bias[u] += lr * (err - reg * user_bias[u])
-            item_bias[i] += lr * (err - reg * item_bias[i])
-            P[u] += lr * (err * Q[i] - reg * P[u])
-            Q[i] += lr * (err * P[u] - reg * Q[i])
-
-        rmse = compute_rmse_svd(ratings_indexed, global_mean, user_bias, item_bias, P, Q)
-        print(f"[SVD] Epoch {epoch+1}/{n_epochs} - RMSE: {rmse:.4f}")
-
-    return global_mean, user_bias, item_bias, P, Q
-
-def compute_rmse_svd(ratings_indexed, global_mean, user_bias, item_bias, P, Q):
-    errors = []
-    for u, i, r_ui in ratings_indexed:
-        pred = global_mean + user_bias[u] + item_bias[i] + np.dot(P[u], Q[i])
-        errors.append((r_ui - pred) ** 2)
-    return np.sqrt(np.mean(errors))
-
-global_mean, user_bias, item_bias, P_svd, Q_svd = train_svd(ratings_df, n_epochs=20)
+U_als, V_als = als(R, num_iters=50)
 
 # === 6. Comparison Functions ===
 def predict_als(user_id, movie_id):
     u = user2index.get(user_id)
     i = item2index.get(movie_id)
     if u is not None and i is not None:
-        return U_als @ V_als.T
+        return U_als[u] @ V_als[i]
     return np.nan
 
-def predict_svd(user_id, movie_id):
-    u = user2index.get(user_id)
-    i = item2index.get(movie_id)
-    if u is not None and i is not None:
-        return global_mean + user_bias[u] + item_bias[i] + np.dot(P_svd[u], Q_svd[i])
-    return global_mean
-
 # === 7. Example Comparison ===
-sample_user = user_ids[0]
+sample_user = user_ids[2]
 sample_movie = item_ids[0]
 
 als_pred = predict_als(sample_user, sample_movie)
-svd_pred = predict_svd(sample_user, sample_movie)
 
 print(f"\nPredictions for user {sample_user}, movie {sample_movie}:")
 print(f"  ALS prediction: {als_pred:.4f}")
-print(f"  SVD prediction: {svd_pred:.4f}")
