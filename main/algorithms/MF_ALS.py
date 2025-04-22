@@ -21,12 +21,6 @@ num_users = ratings['userId'].unique()
 num_movies = ratings['movieId'].unique()
 #print(np.sort(num_movies), "\n")
 
-user_id = 4
-movie_id = 32
-user_index = pivot_table.index.get_loc(user_id)
-movie_index = pivot_table.columns.get_loc(movie_id)
-#print(rating_matrix[user_index, movie_index], "\n")
-
 # Example matrix
 R = np.array([
     [5, 3, 0, 1],
@@ -44,7 +38,7 @@ print(R.shape, "\n")
 num_users, num_items = R.shape
 num_iters = 50 
 lamb = 0.1 # Used for overfitting
-num_features = 100 
+num_features = 100
 
 # Create User-Feature and Movie-Feature matrices
 U = np.random.rand(num_users, num_features)
@@ -83,24 +77,54 @@ def compute_rmse(R, U, V):
 
 def als():
     # Loop until RMSE target is reached
-    #previous_rmse = 0
-    #rmse_goal = 0.0150
-    #while 1:
-    for i in range(num_iters):
+    iteration = 1
+    rmse = 1
+    rmse_goal = 0.0150
+    while rmse > rmse_goal:
+    #for i in range(num_iters):
         update_U(R, U, V)
         update_V(R, U, V)
 
         rmse = compute_rmse(R, U, V)
-        print(f"[ALS] Iteration {i+1}: RMSE = {rmse:.4f}")
-        
-        #if abs(previous_rmse - rmse) < rmse_goal:
-        #    break
-        #previous_rmse = rmse
+        print(f"[ALS] Iteration {iteration}: RMSE = {rmse:.4f}")
+        iteration+=1
+    return U @ V.T
 
-als()
-predicted_R = U @ V.T
+predicted_R = als()
 print(f"\n{np.round(predicted_R, 2)}")
 print(predicted_R.shape)
 
-#output_file = "output.txt"
-#np.savetxt(filepath + output_file, np.round(predicted_R, 2), fmt="%.2f", delimiter=",")
+user_id = 3
+user_index = pivot_table.index.get_loc(user_id)
+#movie_id = 32
+#movie_index = pivot_table.columns
+
+# Recommend Movies that user has not watched
+rated_items = R[user_index, :] <= 0                                                                 # Select columns and returns true if user has not rated that movie
+unrated_movie_indices = np.where(rated_items)[0]
+unrated_movie_ratings = predicted_R[user_index, unrated_movie_indices]
+unrated_movie_ids = pivot_table.columns[unrated_movie_indices]
+unrated_movie_titles = movies.set_index('movieId').loc[unrated_movie_ids]['title']
+unrated_movie_genres = movies.set_index('movieId').loc[unrated_movie_ids]['genres']
+
+unrated_movies_df = pd.DataFrame({
+    'Movie ID': unrated_movie_ids.values,
+    'Predicted Rating': np.round(unrated_movie_ratings,1),
+    'Recommended Movies': unrated_movie_titles.values,
+    'Genres': unrated_movie_genres.values
+    
+})
+
+unrated_movies_df = unrated_movies_df.sort_values(by='Predicted Rating', ascending=False)
+print(unrated_movies_df.head(10))  # Show top 10 recommendations
+
+# Write to output file
+output_file = "output.txt"
+movie_ratings = ratings.merge(movies, on="movieId")
+user_rated_movies = movie_ratings[movie_ratings['userId'] == user_id]
+with open(filepath + output_file, 'w') as file:
+    file.write(f"Movies rated by user {user_id}:\n\n")
+    file.write(user_rated_movies[['movieId', 'rating', 'title', 'genres']].to_string())
+    file.write(f"\n\n\nTop recommendations for user {user_id}:\n\n")
+    file.write(unrated_movies_df.head(10).to_string())
+np.savetxt(filepath + "matrix.txt", np.round(predicted_R, 2), fmt="%.2f", delimiter=",")

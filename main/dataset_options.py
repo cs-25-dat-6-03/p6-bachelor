@@ -34,7 +34,10 @@ number_of_unique_ratings = ratings["rating"].drop_duplicates().sort_values(ascen
 #print(f"Number of ratings: {number_of_ratings}")
 #print(f"Number of unique movieId's: {number_of_unique_movies}")
 #print(f"Number of unique users: {number_of_unique_users}")
-print(f"Number of unique ratings:\n{number_of_unique_ratings}")
+rating_counts = ratings["rating"].value_counts().sort_index(ascending=False)
+for rating, count in rating_counts.items():
+    print(f"{count} of {rating}")
+exit(1)
 #print(f"Average number of ratings per user: {round(number_of_ratings/number_of_unique_users, 2)}")
 #print(f"Average number of ratings per movie: {round(number_of_ratings/number_of_unique_movies, 2)}")
 

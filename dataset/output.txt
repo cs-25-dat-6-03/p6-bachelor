@@ -1,0 +1,57 @@
+Movies rated by user 3:
+
+     movieId  rating                                                                     title                                    genres
+261       31     0.5                                                    Dangerous Minds (1995)                                     Drama
+262      527     0.5                                                   Schindler's List (1993)                                 Drama|War
+263      647     0.5                                                 Courage Under Fire (1996)                    Action|Crime|Drama|War
+264      688     0.5                                               Operation Dumbo Drop (1995)               Action|Adventure|Comedy|War
+265      720     0.5                    Wallace & Gromit: The Best of Aardman Animation (1996)                Adventure|Animation|Comedy
+266      849     5.0                                                   Escape from L.A. (1996)          Action|Adventure|Sci-Fi|Thriller
+267      914     0.5                                                       My Fair Lady (1964)              Comedy|Drama|Musical|Romance
+268     1093     0.5                                                         Doors, The (1991)                                     Drama
+269     1124     0.5                                                     On Golden Pond (1981)                                     Drama
+270     1263     0.5                                                   Deer Hunter, The (1978)                                 Drama|War
+271     1272     0.5                                                             Patton (1970)                                 Drama|War
+272     1275     3.5                                                         Highlander (1986)                  Action|Adventure|Fantasy
+273     1302     0.5                                                    Field of Dreams (1989)                    Children|Drama|Fantasy
+274     1371     3.0                                      Star Trek: The Motion Picture (1979)                          Adventure|Sci-Fi
+275     1587     4.5                                                Conan the Barbarian (1982)                  Action|Adventure|Fantasy
+276     2018     0.5                                                              Bambi (1942)                  Animation|Children|Drama
+277     2080     0.5                                                 Lady and the Tramp (1955)         Animation|Children|Comedy|Romance
+278     2090     0.5                                                      Rescuers, The (1977)  Adventure|Animation|Children|Crime|Drama
+279     2105     2.0                                                               Tron (1982)                   Action|Adventure|Sci-Fi
+280     2288     4.0                                                         Thing, The (1982)             Action|Horror|Sci-Fi|Thriller
+281     2424     0.5                                                    You've Got Mail (1998)                            Comedy|Romance
+282     2851     5.0                                                           Saturn 3 (1980)                 Adventure|Sci-Fi|Thriller
+283     3024     4.5                                                            Piranha (1978)                             Horror|Sci-Fi
+284     3210     0.5                                       Fast Times at Ridgemont High (1982)                      Comedy|Drama|Romance
+285     3703     5.0                                      Road Warrior, The (Mad Max 2) (1981)          Action|Adventure|Sci-Fi|Thriller
+286     3949     0.5                                                Requiem for a Dream (2000)                                     Drama
+287     4518     5.0                                         The Lair of the White Worm (1988)                             Comedy|Horror
+288     5048     0.5                                                          Snow Dogs (2002)                 Adventure|Children|Comedy
+289     5181     5.0                                                          Hangar 18 (1980)                    Action|Sci-Fi|Thriller
+290     5746     5.0                                           Galaxy of Terror (Quest) (1981)              Action|Horror|Mystery|Sci-Fi
+291     5764     4.5                                                             Looker (1981)              Drama|Horror|Sci-Fi|Thriller
+292     5919     5.0                                                            Android (1982)                                    Sci-Fi
+293     6238     0.5                                                         Green Card (1990)                      Comedy|Drama|Romance
+294     6835     5.0                                                Alien Contamination (1980)                      Action|Horror|Sci-Fi
+295     7899     4.5  Master of the Flying Guillotine (Du bi quan wang da po xue di zi) (1975)                                    Action
+296     7991     5.0                                                    Death Race 2000 (1975)                             Action|Sci-Fi
+297    26409     4.5                                                 Clonus Horror, The (1979)                             Horror|Sci-Fi
+298    70946     5.0                                                            Troll 2 (1990)                            Fantasy|Horror
+299    72378     0.5                                                               2012 (2009)              Action|Drama|Sci-Fi|Thriller
+
+
+Top recommendations for user 3:
+
+      Movie ID  Predicted Rating                                                              Recommended Movies                                  Genres
+906       1215               5.1                                                         Army of Darkness (1993)  Action|Adventure|Comedy|Fantasy|Horror
+274        316               5.0                                                                 Stargate (1994)                 Action|Adventure|Sci-Fi
+1032      1358               5.0                                                              Sling Blade (1996)                                   Drama
+888       1196               5.0                           Star Wars: Episode V - The Empire Strikes Back (1980)                 Action|Adventure|Sci-Fi
+892       1200               5.0                                                                   Aliens (1986)          Action|Adventure|Horror|Sci-Fi
+953       1265               5.0                                                            Groundhog Day (1993)                  Comedy|Fantasy|Romance
+890       1198               4.9  Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981)                        Action|Adventure
+2368      3175               4.9                                                             Galaxy Quest (1999)                 Adventure|Comedy|Sci-Fi
+734        968               4.8                                                 Night of the Living Dead (1968)                  Horror|Sci-Fi|Thriller
+846       1127               4.8                                                               Abyss, The (1989)        Action|Adventure|Sci-Fi|Thriller
