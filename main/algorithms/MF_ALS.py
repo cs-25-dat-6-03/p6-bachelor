@@ -12,21 +12,21 @@ ratings = pd.read_csv(filepath + "ratings.csv")
 # Create full pivot
 pivot_table = ratings.pivot(index='userId', columns='movieId', values='rating')
 pivot_table = pivot_table.fillna(0)
-pivot_table = pivot_table.to_numpy()
+rating_matrix = pivot_table.to_numpy()
 
 # Create mask for known ratings
-mask_full = pivot_table > 0 
+mask_full = rating_matrix > 0 
 user_item_pairs = np.argwhere(mask_full) # Get all nonzero (user, item) pairs
 train_indices, val_indices = train_test_split(user_item_pairs, test_size=0.2, random_state=42) # Split the indices
 
 # Initialize train and val matrices
-train_matrix = np.zeros_like(pivot_table)
-val_matrix = np.zeros_like(pivot_table)
+train_matrix = np.zeros_like(rating_matrix)
+val_matrix = np.zeros_like(rating_matrix)
 
 for (u, i) in train_indices:
-    train_matrix[u, i] = pivot_table[u, i]
+    train_matrix[u, i] = rating_matrix[u, i]
 for (u, i) in val_indices:
-    val_matrix[u, i] = pivot_table[u, i]
+    val_matrix[u, i] = rating_matrix[u, i]
 
 # Create masks
 train_mask = train_matrix > 0
@@ -115,13 +115,13 @@ def write_to_file(user_id, output_file, unrated_movies_df, predicted_R):
     np.savetxt(filepath + "matrix.txt", np.round(predicted_R, 2), fmt="%.2f", delimiter=",")
 
 def recommend_movies(user_id, R, predicted_R, output, output_file):
-    user_index = R.index.get_loc(user_id)
+    user_index = pivot_table.index.get_loc(user_id)
 
     # Recommend Movies that user has not watched
     rated_items = R[user_index, :] <= 0 #Select columns and returns true if user has not rated that movie
     unrated_movie_indices = np.where(rated_items)[0]
     unrated_movie_ratings = predicted_R[user_index, unrated_movie_indices]
-    unrated_movie_ids = R.columns[unrated_movie_indices]
+    unrated_movie_ids = pivot_table.columns[unrated_movie_indices]
     unrated_movie_titles = movies.set_index('movieId').loc[unrated_movie_ids]['title']
     unrated_movie_genres = movies.set_index('movieId').loc[unrated_movie_ids]['genres']
 
