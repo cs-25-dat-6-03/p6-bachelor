@@ -74,6 +74,9 @@ def als(R, num_users, num_items, num_iters = 10, num_features = 4, lamb = 0.1):
         print(f"[ALS] Iteration {i+1}: RMSE = {rmse:.4f}")
     return (U, V)
 
+def predict(U, V):
+    return U @ V.T
+
 def compute_mask_rmse(true_R, pred_R, mask):
     error = (true_R - pred_R) * mask
     return np.sqrt(np.sum(error**2) / np.sum(mask))
@@ -89,7 +92,7 @@ def hyperparameter_tuning(R, num_iters, lamb, num_features, num_users, num_items
 
                 U, V = als(R, num_users, num_items, num_iter, rank, reg)
 
-                pred = U @ V.T
+                pred = predict(U, V)
                 rmse = compute_mask_rmse(val_matrix, pred, val_mask)
                 print(f"Validation RMSE = {rmse:.4f}")
 
@@ -100,9 +103,6 @@ def hyperparameter_tuning(R, num_iters, lamb, num_features, num_users, num_items
                 print("Best hyperparameters:", best_params)
                 print("Best RMSE:", best_rmse)
     return best_params
-
-def predict(U, V):
-    return U @ V.T
 
 def write_to_file(user_id, output_file, unrated_movies_df, predicted_R):
     movie_ratings = ratings.merge(movies, on="movieId")
