@@ -131,12 +131,12 @@ def recommend_movies(user_id, R, predicted_R, output, output_file):
         'Recommended Movies': unrated_movie_titles.values,
         'Genres': unrated_movie_genres.values
     })
-
     unrated_movies_df = unrated_movies_df.sort_values(by='Predicted Rating', ascending=False)
-    print(unrated_movies_df.head(10))  # Show top 10 recommendations
 
     if output == "y":
         write_to_file(user_id, output_file, unrated_movies_df, predicted_R)
+
+    return unrated_movies_df.head(10)
 
 # Print original matrix
 num_users, num_items = train_matrix.shape
@@ -160,4 +160,5 @@ print(predicted_R.shape)
 user_id = 1
 output = "y"
 output_file = "output.txt"
-recommend_movies(user_id, train_matrix, predicted_R, output, output_file)
+result = recommend_movies(user_id, train_matrix, predicted_R, output, output_file)
+print(result)  # Show top 10 recommendations
