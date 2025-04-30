@@ -160,7 +160,7 @@ Movies rated by user 1:
 156     2450     4.0                                                          Howard the Duck (1986)                                    Adventure|Comedy|Sci-Fi
 157     2459     5.0                                             Texas Chainsaw Massacre, The (1974)                                                     Horror
 158     2470     5.0                                                         Crocodile Dundee (1986)                                           Adventure|Comedy
-159     2478     4.0                                                           ¡Three Amigos! (1986)                                             Comedy|Western
+159     2478     4.0                                                           ï¿½Three Amigos! (1986)                                             Comedy|Western
 160     2492     4.0                                                                 20 Dates (1998)                                             Comedy|Romance
 161     2502     5.0                                                             Office Space (1999)                                               Comedy|Crime
 162     2528     3.0                                                              Logan's Run (1976)                                    Action|Adventure|Sci-Fi
@@ -246,4 +246,4 @@ Top recommendations for user 1:
 870       1246               7.3                        Dead Poets Society (1989)                                                Drama
 2292      3285               6.9                                Beach, The (2000)                                      Adventure|Drama
 856       1230               6.9                                Annie Hall (1977)                                       Comedy|Romance
-4327      6708               6.8                            Matchstick Men (2003)                                   Comedy|Crime|Drama
+4327      6708               6.8                            Matchstick Men (2003)                                   Comedy|Crime|Drama 
