@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import random
 from sklearn.model_selection import ParameterGrid
 from scipy.sparse import csr_matrix
 from sklearn.model_selection import train_test_split
@@ -14,15 +15,16 @@ pivot_table = ratings.pivot(index='userId', columns='movieId', values='rating')
 pivot_table = pivot_table.fillna(0)
 rating_matrix = pivot_table.to_numpy()
 
-# Create mask for known ratings
-mask_full = rating_matrix > 0 
-user_item_pairs = np.argwhere(mask_full) # Get all nonzero (user, item) pairs
-train_indices, val_indices = train_test_split(user_item_pairs, test_size=0.2, random_state=42) # Split the indices
-
-# Initialize train and val matrices
+# Initialize train and val matrices filled with 0s
 train_matrix = np.zeros_like(rating_matrix)
 val_matrix = np.zeros_like(rating_matrix)
 
+# Create mask for known ratings
+mask_full = rating_matrix > 0 
+user_item_pairs = np.argwhere(mask_full) # Get all nonzero (in a [user item] format) pairs
+train_indices, val_indices = train_test_split(user_item_pairs, test_size=0.2, random_state=42) # Split the indices. 100836 ratings turns into 80668 and 20168 split
+
+# Fill train and validation matrices with ratings based on the splits
 for (u, i) in train_indices:
     train_matrix[u, i] = rating_matrix[u, i]
 for (u, i) in val_indices:
@@ -57,8 +59,11 @@ def update_V(R, U, V, num_features, lamb, num_items):                           
         b = U_rated.T @ R_i
         V[i] = np.linalg.solve(A, b)
 
+def predict(U, V):
+    return U @ V.T
+
 def compute_rmse(R, U, V):
-    prediction = U @ V.T
+    prediction = predict(U, V)
     non_zero = R > 0
     error = R[non_zero] - prediction[non_zero]
     return np.sqrt(np.mean(error ** 2))
@@ -73,9 +78,6 @@ def als(R, num_users, num_items, num_iters = 10, num_features = 4, lamb = 0.1):
         rmse = compute_rmse(R, U, V)
         print(f"[ALS] Iteration {i+1}: RMSE = {rmse:.4f}")
     return (U, V)
-
-def predict(U, V):
-    return U @ V.T
 
 def compute_mask_rmse(true_R, pred_R, mask):
     error = (true_R - pred_R) * mask
@@ -102,6 +104,39 @@ def hyperparameter_tuning(R, num_iters, lamb, num_features, num_users, num_items
     
                 print("Best hyperparameters:", best_params)
                 print("Best RMSE:", best_rmse)
+    return best_params
+
+def hyperparameter_tuning_random(R, num_iters, lamb, num_features, num_users, num_items):
+    # Define search space
+    latent_feature_choices = [10, 20, 30, 40, 50, 60, 70, 80]
+    iteration_choices = [5, 10, 20, 30, 40, 50]
+    lambda_choices = [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1.0]
+
+    # How many random combinations to try
+    num_trials = 30
+
+    best_rmse = float('inf')
+    best_params = None
+
+    for trial  in range(num_trials):
+        # Randomly sample parameters
+        rank = random.choice(latent_feature_choices)
+        num_iter = random.choice(iteration_choices)
+        reg = random.choice(lambda_choices)
+        print(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
+
+        U, V = als(R, num_users, num_items, num_iter, rank, reg)
+
+        pred = predict(U, V)
+        rmse = compute_mask_rmse(val_matrix, pred, val_mask)
+        print(f"Trial = {num_trials+1}, Validation RMSE = {rmse:.4f}")
+
+        if rmse < best_rmse:
+            best_rmse = rmse
+            best_params = (rank, reg, num_iter)
+
+        print("Best hyperparameters:", best_params)
+        print(f"Best RMSE: {best_rmse:.4f}" )
     return best_params
 
 def write_to_file(user_id, output_file, unrated_movies_df, predicted_R):
@@ -147,8 +182,9 @@ print(train_matrix.shape, "\n")
 num_iters = [10, 50]
 num_features = [20, 50, 100]
 lamb = [0.01, 0.1]
-rank, reg, num_iter = hyperparameter_tuning(train_matrix, num_iters, lamb, num_features, num_users, num_items)
-#rank, reg, num_iter = (2, 0.1, 10)
+#rank, reg, num_iter = hyperparameter_tuning(val_matrix, num_iters, lamb, num_features, num_users, num_items)
+rank, reg, num_iter = (50, 0.01, 50)
+print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
 U, V = als(train_matrix, num_users, num_items, num_iter, rank, reg)
