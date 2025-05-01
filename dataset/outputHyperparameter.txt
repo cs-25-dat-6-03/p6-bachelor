@@ -1,0 +1,25 @@
+Training ALS: features=80, lambda=1.0, iterations=50        Trial = 1, Validation RMSE = 0.1471 x
+Training ALS: features=90, lambda=0.1, iterations=5         Trial = 2, Validation RMSE = 0.0514 x
+Training ALS: features=60, lambda=0.01, iterations=20       Trial = 3, Validation RMSE = 0.0056 x
+Training ALS: features=80, lambda=0.01, iterations=30       Trial = 4, Validation RMSE = 0.0054 x
+Training ALS: features=50, lambda=0.05, iterations=50       Trial = 5, Validation RMSE = 0.0131 x
+Training ALS: features=100, lambda=0.1, iterations=50       Trial = 6, Validation RMSE = 0.0217 x
+Training ALS: features=10, lambda=0.005, iterations=30      Trial = 7, Validation RMSE = 0.1189 x
+Training ALS: features=40, lambda=0.05, iterations=40       Trial = 8, Validation RMSE = 0.0137 x
+Training ALS: features=100, lambda=0.5, iterations=50       Trial = 9, Validation RMSE = 0.0774 x
+Training ALS: features=40, lambda=1.0, iterations=20        Trial = 10, Validation RMSE = 0.1565 x
+Training ALS: features=30, lambda=0.01, iterations=30       Trial = 11, Validation RMSE = 0.0049 x
+Training ALS: features=100, lambda=0.01, iterations=20      Trial = 12, Validation RMSE = 0.0066 x
+Training ALS: features=40, lambda=0.01, iterations=10       Trial = 13, Validation RMSE = 0.0061 x
+Training ALS: features=100, lambda=0.005, iterations=30     Trial = 14, Validation RMSE = 0.0035 x
+Training ALS: features=80, lambda=0.001, iterations=50      Trial = 15, Validation RMSE = 0.0007
+Training ALS: features=30, lambda=0.005, iterations=40      Trial = 16, Validation RMSE = 0.0027 x
+Training ALS: features=10, lambda=0.5, iterations=40        Trial = 17, Validation RMSE = 0.1369 x
+Training ALS: features=80, lambda=0.5, iterations=5         Trial = 18, Validation RMSE = 0.1435 x
+Training ALS: features=50, lambda=0.1, iterations=20        Trial = 19, Validation RMSE = 0.0284 x
+Training ALS: features=30, lambda=0.005, iterations=50      Trial = 20, Validation RMSE = 0.0025 x
+Training ALS: features=20, lambda=0.01, iterations=40       Trial = 21, Validation RMSE = 0.0052 x 
+Training ALS: features=50, lambda=0.5, iterations=40        Trial = 22, Validation RMSE = 0.0790 x
+Training ALS: features=20, lambda=0.005, iterations=30      Trial = 23, Validation RMSE = 0.0045 x
+Training ALS: features=60, lambda=0.05, iterations=50       Trial = 24, Validation RMSE = 0.0131 x
+Training ALS: features=10, lambda=0.01, iterations=40       Trial = 25, Validation RMSE = 0.0939 x
