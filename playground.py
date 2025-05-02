@@ -35,10 +35,24 @@ def prompt_user(): # For cold start
         # Filter movies by genre
         movies_list = movies[movies['genres'].str.contains(genre, na=False)]
 
+        avg_ratings = ratings.groupby('movieId')['rating'].agg(['count', 'mean'])
+        C = avg_ratings['count'].mean()
+        m = avg_ratings['mean'].mean()
+
+        def bayesian_avg(ratings):
+            bayesian_avg = (C*m+ratings.sum())/(C+ratings.count())
+            return round(bayesian_avg, 2)
+        
+        bayesian_avg_ratings = ratings.groupby('movieId')['rating'].agg(bayesian_avg).reset_index()
+        bayesian_avg_ratings.columns = ['movieId', 'bayesian_avg']
+        avg_ratings = avg_ratings.merge(bayesian_avg_ratings, on='movieId')
+
+        avg_ratings = avg_ratings.merge(movies[['movieId', 'title']])
+        avg_ratings.sort_values('bayesian_avg', ascending=False)
+
         # Calculate average ratings for the filtered movies
-        avg_ratings = ratings.groupby('movieId')['rating'].mean()
         movies_list = movies_list.merge(avg_ratings, left_on='movieId', right_on='movieId', how='left')
-        movies_list = movies_list.rename(columns={'rating': 'avg_rating'})
+        movies_list = movies_list.rename(columns={'bayesian_avg': 'avg_rating', 'title_x': 'title'})  
         movies_list = movies_list.sort_values(by='avg_rating', ascending=False)
 
         # Display the top 10 movies
