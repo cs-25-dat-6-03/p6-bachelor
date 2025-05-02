@@ -184,6 +184,9 @@ def recommend_movies(user_id, R, predicted_R, output, output_file):
 
     return unrated_movies_df.head(10)
 
+def prompt_user(): # For cold start
+    return 0
+
 # Print original matrix
 num_users, num_items = train_matrix.shape
 print(train_matrix)
@@ -194,8 +197,8 @@ num_iters = [10, 50]
 num_features = [20, 50, 100]
 lamb = [0.01, 0.1]
 #rank, reg, num_iter = hyperparameter_tuning(val_matrix, num_iters, lamb, num_features, num_users, num_items)
-#rank, reg, num_iter = hyperparameter_tuning_random(val_matrix, num_users, num_items)
-rank, reg, num_iter = (80, 0.001, 50)
+rank, reg, num_iter = hyperparameter_tuning_random(val_matrix, num_users, num_items)
+#rank, reg, num_iter = (80, 0.001, 50)
 print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
