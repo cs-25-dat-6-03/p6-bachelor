@@ -258,16 +258,16 @@ print(train_matrix)
 print(train_matrix.shape, "\n")
 
 # User prompts (for cold start problem)
-prompt_user_result = prompt_user()
-print(prompt_user_result)
+#prompt_user_result = prompt_user()
+#print(prompt_user_result)
 
 # Hyperparameter
-num_iters = [10, 50]
-num_features = [20, 50, 100]
-lamb = [0.01, 0.1]
-#rank, reg, num_iter = hyperparameter_tuning(val_matrix, num_iters, lamb, num_features, num_users, num_items)
-#rank, reg, num_iter = hyperparameter_tuning_random(val_matrix, num_users, num_items)
-rank, reg, num_iter = (80, 0.001, 50)
+num_features = [50, 60, 70, 80]
+lamb = [0.001, 0.01, 0.1, 1.0]
+num_iters = [20, 50]
+#rank, reg, num_iter = hyperparameter_tuning(train_matrix, num_iters, lamb, num_features, num_users, num_items)
+#rank, reg, num_iter = hyperparameter_tuning_random(train_matrix, num_users, num_items)
+rank, reg, num_iter = (80, 1.0, 50)
 print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
