@@ -14,12 +14,9 @@ def prompt_user(): # For cold start
     all_genres = movies['genres'].str.split('|').explode().unique()[:-1] # Show all genres without the last one (because it is a no genre useless string)
 
     # Display the list of genres
-    i = 0
-    genres_array = []
+    genres_array = list(all_genres)
     print("Available genres:")
-    for genre in all_genres:
-        i += 1
-        genres_array.append(genre)
+    for i, genre in enumerate(genres_array, start=1):
         print(f"{i}. {genre}")
     
     # Genres User input
@@ -29,37 +26,40 @@ def prompt_user(): # For cold start
         genres_choice_array.append(genres_array[int(choice)-1])
     print("\nYou selected the following genres:", genres_choice_array)
 
-    # Filter movies
+    # Precompute global averages
+    avg_ratings = ratings.groupby('movieId')['rating'].agg(['count', 'mean'])
+    C = avg_ratings['count'].mean()
+    m = avg_ratings['mean'].mean()
+
     max_user_id = ratings['userId'].max()
+    selected_movie_ids = set()  # Keep track of already selected movies
+
     for genre in genres_choice_array:
         # Filter movies by genre
         movies_list = movies[movies['genres'].str.contains(genre, na=False)]
 
-        avg_ratings = ratings.groupby('movieId')['rating'].agg(['count', 'mean'])
-        C = avg_ratings['count'].mean()
-        m = avg_ratings['mean'].mean()
-
-        def bayesian_avg(ratings):
-            bayesian_avg = (C*m+ratings.sum())/(C+ratings.count())
-            return round(bayesian_avg, 2)
-        
-        bayesian_avg_ratings = ratings.groupby('movieId')['rating'].agg(bayesian_avg).reset_index()
-        bayesian_avg_ratings.columns = ['movieId', 'bayesian_avg']
-        avg_ratings = avg_ratings.merge(bayesian_avg_ratings, on='movieId')
-
-        avg_ratings = avg_ratings.merge(movies[['movieId', 'title']])
-        avg_ratings.sort_values('bayesian_avg', ascending=False)
-
         # Calculate average ratings for the filtered movies
-        movies_list = movies_list.merge(avg_ratings, left_on='movieId', right_on='movieId', how='left')
-        movies_list = movies_list.rename(columns={'bayesian_avg': 'avg_rating', 'title_x': 'title'})  
+        def bayesian_avg(ratings):
+            return round((C * m + ratings.sum()) / (C + ratings.count()), 2)
+
+        bayesian_avg_ratings = ratings.groupby('movieId')['rating'].agg(bayesian_avg).reset_index()
+        bayesian_avg_ratings.columns = ['movieId', 'avg_rating']
+
+        # Merge with movie details
+        movies_list = movies_list.merge(bayesian_avg_ratings, left_on='movieId', right_on='movieId', how='left')
         movies_list = movies_list.sort_values(by='avg_rating', ascending=False)
+
+        # Exclude already selected movies
+        movies_list = movies_list[~movies_list['movieId'].isin(selected_movie_ids)] # "~" = NOT Operator
 
         # Display the top 10 movies
         print(f"\nTop 10 {genre} movies based on average rating:")
         movies_list = movies_list.head(10).reset_index(drop=True)
         movies_list.index += 1 
         print(movies_list[['title', 'genres', 'avg_rating']].to_string(index=True))
+
+        # Add selected movies to the set
+        selected_movie_ids.update(movies_list['movieId'].tolist())
 
         # Prepare the list of movie IDs for user selection
         movies_array = movies_list['movieId'].tolist()
