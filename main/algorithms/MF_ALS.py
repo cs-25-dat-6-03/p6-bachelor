@@ -83,7 +83,7 @@ def compute_mask_rmse(true_R, pred_R, mask):
     error = (true_R - pred_R) * mask
     return np.sqrt(np.sum(error**2) / np.sum(mask))
 
-def hyperparameter_tuning(R, num_iters, lamb, num_features, num_users, num_items):
+def hyperparameter_tuning_grid(R, num_iters, lamb, num_features, num_users, num_items):
     best_rmse = float('inf')
     best_params = None
 
@@ -261,18 +261,25 @@ print(train_matrix.shape, "\n")
 #prompt_user_result = prompt_user()
 #print(prompt_user_result)
 
+# Normalize the training matrix
+user_means = np.sum(train_matrix, axis=1) / np.sum(train_mask, axis=1) # Compute user means (ignoring zeros)
+user_means = np.nan_to_num(user_means, nan=0.0) # Handle NaN values for users with no ratings
+normalized_train_matrix = train_matrix - user_means[:, np.newaxis]
+normalized_train_matrix[~train_mask] = 0
+
 # Hyperparameter
-num_features = [50, 60, 70, 80]
+num_features = [80, 90, 100]
 lamb = [0.001, 0.01, 0.1, 1.0]
 num_iters = [20, 50]
-#rank, reg, num_iter = hyperparameter_tuning(train_matrix, num_iters, lamb, num_features, num_users, num_items)
+#rank, reg, num_iter = hyperparameter_tuning_grid(train_matrix, num_iters, lamb, num_features, num_users, num_items)
 #rank, reg, num_iter = hyperparameter_tuning_random(train_matrix, num_users, num_items)
-rank, reg, num_iter = (80, 1.0, 50)
+rank, reg, num_iter = (100, 1.0, 50)
 print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
 U, V = als(train_matrix, num_users, num_items, num_iter, rank, reg)
 predicted_R = predict(U, V)
+#predicted_R += user_means[:, np.newaxis] # Add User Means Back to Predictions
 print(f"\n{np.round(predicted_R, 2)}")
 print(predicted_R.shape)
 
