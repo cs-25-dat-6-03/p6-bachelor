@@ -71,6 +71,7 @@ U, V = ALS_Training.als(R_train, test_data, num_users, num_items, num_iter, rank
 predicted_R = ALS_Recommendation.predict(U, V)
 print(f"\n{np.round(predicted_R, 2)}")
 print(predicted_R.shape)
+ALS_Recommendation.save_features(U,V)
 exit(1)
 
 # Recommend
