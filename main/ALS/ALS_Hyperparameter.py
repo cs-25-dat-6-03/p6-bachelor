@@ -1,29 +1,43 @@
 import random
+from ALS import ALS_Cold_Start, ALS_Training, ALS_Recommendation, ALS_Hyperparameter, ALS_Evaluation
 
-def hyperparameter_tuning_grid(R, num_iters, lamb, num_features, num_users, num_items):
+filepath = "dataset/" 
+
+def hyperparameter_tuning_grid(R, test_data, num_users, num_items):
     best_rmse = float('inf')
     best_params = None
 
-    for rank in num_features:
-        for reg in lamb:
-            for num_iter in num_iters:
-                print(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
-
-                U, V = als(R, num_users, num_items, num_iter, rank, reg)
-
-                pred = predict(U, V)
-                rmse = compute_mask_rmse(val_matrix, pred, val_mask)
-                print(f"Validation RMSE = {rmse:.4f}")
-
-                if rmse < best_rmse:
-                    best_rmse = rmse
-                    best_params = (rank, reg, num_iter)
+    num_features = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+    lamb = [0.001, 0.01, 0.1, 1.0]
+    num_iters = [20, 50]
     
-                print("Best hyperparameters:", best_params)
-                print("Best RMSE:", best_rmse)
+    with open(filepath + "hyperparameter_logs.txt", 'w') as file:
+        for rank in num_features:
+            for reg in lamb:
+                for num_iter in num_iters:
+                    print(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
+                    file.write(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
+
+                    U, V = ALS_Training.als(R, test_data, num_users, num_items, num_iter, rank, reg)
+                    
+                    rmse = ALS_Evaluation.compute_rmse(test_data, U, V)
+                    print(f"Validation RMSE = {rmse:.4f}")
+                    file.write(f"\tValidation RMSE = {rmse:.4f}\n")
+
+                    if rmse < best_rmse:
+                        best_rmse = rmse
+                        best_params = (rank, reg, num_iter)
+        
+                    print("Best hyperparameters:", best_params)
+                    print("Best RMSE:", best_rmse)
+                    # file.write(f"Best hyperparameters: {best_params}\n")
+                    # file.write(f"Best RMSE: {best_rmse}\n\n")
+                    file.flush()
+        file.write(f"\n\nBest hyperparameters: {best_params}\n")
+        file.write(f"Best RMSE: {best_rmse}")
     return best_params
 
-def hyperparameter_tuning_random(R, num_users, num_items):
+def hyperparameter_tuning_random(R, test_data, num_users, num_items):
     # Define search space
     latent_feature_choices = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     iteration_choices = [5, 10, 20, 30, 40, 50]
@@ -44,10 +58,10 @@ def hyperparameter_tuning_random(R, num_users, num_items):
         reg = random.choice(lambda_choices)
         print(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
 
-        U, V = als(R, num_users, num_items, num_iter, rank, reg)
+        U, V = ALS_Training.als(R, num_users, num_items, num_iter, rank, reg)
 
-        pred = predict(U, V)
-        rmse = compute_mask_rmse(val_matrix, pred, val_mask)
+        pred = ALS_Recommendation.predict(U, V)
+        rmse = ALS_Evaluation.compute_rmse(test_data, U, V)
         print(f"Trial = {trial+1}, Validation RMSE = {rmse:.4f}")
 
         if rmse < best_rmse:

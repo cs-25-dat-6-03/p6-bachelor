@@ -11,7 +11,9 @@ def write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath
         file.write(unrated_movies_df.head(10).to_string())
     np.savetxt(filepath + "matrix.txt", np.round(predicted_R, 2), fmt="%.2f", delimiter=",")
 
-def recommend_movies(user_id, R, predicted_R, output, output_file, pivot_table, filepath, ratings, movies):
+def recommend_movies(user_id, R, predicted_R, output, output_file, filepath, ratings, movies):
+    # Create full pivot
+    pivot_table = ratings.pivot(index='userId', columns='movieId', values='rating').fillna(0)
     user_index = pivot_table.index.get_loc(user_id)
 
     # Recommend Movies that user has not watched
@@ -34,6 +36,9 @@ def recommend_movies(user_id, R, predicted_R, output, output_file, pivot_table, 
         write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath, ratings, movies)
 
     return unrated_movies_df.head(10)
+
+def save_features():
+    return 0
 
 def predict(U, V):
     return U @ V.T
