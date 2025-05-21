@@ -24,7 +24,3 @@ def compute_rmse(test_data, U, V):
         se += (actual - prediction[u,i]) ** 2
     mse = se / len(test_data)
     return np.sqrt(mse)
-
-def compute_mask_rmse(true_R, pred_R, mask):
-    error = (true_R - pred_R) * mask
-    return np.sqrt(np.sum(error**2) / np.sum(mask))
