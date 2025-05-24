@@ -44,4 +44,4 @@ def save_features(U, V):
     np.savetxt(filepath + "item_matrix.txt", np.round(V, 2), fmt="%.2f", delimiter=",")
 
 def predict(U, V):
-    return U @ V.T
+    return U.T @ V
