@@ -40,10 +40,8 @@ def recommend_movies(user_id, R, predicted_R, output, output_file, filepath, rat
     return unrated_movies_df.head(10)
 
 def save_features(U, V):
-    with open(filepath + "user_matrix.txt", 'w') as file:
-        file.write(U)
-    with open(filepath + "item_matrix.txt", 'w') as file:
-        file.write(V)
+    np.savetxt(filepath + "user_matrix.txt", np.round(U, 2), fmt="%.2f", delimiter=",")
+    np.savetxt(filepath + "item_matrix.txt", np.round(V, 2), fmt="%.2f", delimiter=",")
 
 def predict(U, V):
     return U @ V.T

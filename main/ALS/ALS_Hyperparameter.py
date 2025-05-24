@@ -3,7 +3,7 @@ from ALS import ALS_Cold_Start, ALS_Training, ALS_Recommendation, ALS_Hyperparam
 
 filepath = "dataset/" 
 
-def hyperparameter_tuning_grid(R, test_data, num_users, num_items):
+def hyperparameter_tuning_grid(R, test_data, num_users, num_items, I):
     best_rmse = float('inf')
     best_params = None
 
@@ -11,16 +11,16 @@ def hyperparameter_tuning_grid(R, test_data, num_users, num_items):
     lamb = [0.001, 0.01, 0.1, 1.0]
     num_iters = [20, 50]
     
-    with open(filepath + "hyperparameter_logs.txt", 'w') as file:
+    with open(filepath + "hyperparameter_logs.txt", 'a') as file:
         for rank in num_features:
             for reg in lamb:
                 for num_iter in num_iters:
                     print(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
                     file.write(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
 
-                    U, V = ALS_Training.als(R, test_data, num_users, num_items, num_iter, rank, reg)
+                    U, V = ALS_Training.als(R, test_data, num_users, num_items, I, num_iter, rank, reg)
                     
-                    rmse = ALS_Evaluation.compute_rmse(test_data, U, V)
+                    rmse = ALS_Evaluation.rmse(I, test_data, U, V)
                     print(f"Validation RMSE = {rmse:.4f}")
                     file.write(f"\tValidation RMSE = {rmse:.4f}\n")
 

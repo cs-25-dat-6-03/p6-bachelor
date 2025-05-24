@@ -11,72 +11,79 @@ filepath = "dataset/"
 movies = pd.read_csv(filepath + "movies.csv")
 ratings = pd.read_csv(filepath + "ratings.csv")
 
-# Create pivot tables for train and test
-train_pivot = ratings.pivot(index='userId', columns='movieId', values='rating').fillna(0)
-train_matrix = train_pivot.to_numpy()
+n_users = ratings.userId.unique().shape[0]
+n_items = ratings.movieId.unique().shape[0]
 
-# Build lookup for user and item indices (For cold start)
-user_ids = list(train_pivot.index) # list of user_ids in matrix
-item_ids = list(train_pivot.columns) # list of item_ids in matrix
-user_id_to_index = {user_id: idx for idx, user_id in enumerate(user_ids)} # user_id along with its index
-item_id_to_index = {item_id: idx for idx, item_id in enumerate(item_ids)} # item_id along with its index
+# Create mappings from IDs to indices
+movie_id_to_index = {mid: idx for idx, mid in enumerate(sorted(ratings.movieId.unique()))}
+user_id_to_index = {uid: idx for idx, uid in enumerate(sorted(ratings.userId.unique()))}
 
-# Extract non-zero ratings and split into train/test
-known_ratings = [(u, i, train_matrix[u, i]) 
-                 for u in range(train_matrix.shape[0]) 
-                 for i in range(train_matrix.shape[1]) 
-                 if train_matrix[u, i] > 0]
+train_data, test_data = train_test_split(ratings, test_size=0.2, random_state=42)
+train_data, val_data = train_test_split(train_data, test_size=0.2, random_state=42)
+train_data = pd.DataFrame(train_data)
+test_data = pd.DataFrame(test_data)
+val_data = pd.DataFrame(val_data)
 
-# Cold start
-user_seen = set()
-item_seen = set()
-guaranteed_train = []
+# Create training and test matrix
+R = np.zeros((n_users, n_items))
+for line in train_data.itertuples():
+    u = user_id_to_index[line.userId]
+    m = movie_id_to_index[line.movieId]
+    R[u, m] = line.rating
 
-# Guarantee that for every user and item in the test set, at least one of their ratings remains in the training set (Used for cold start)
-for u, i, r in known_ratings:
-    if u not in user_seen or i not in item_seen:
-        guaranteed_train.append((u, i, r))
-        user_seen.add(u)
-        item_seen.add(i)
-remaining_ratings = [x for x in known_ratings if x not in guaranteed_train]
+T = np.zeros((n_users, n_items))
+for line in test_data.itertuples():
+    u = user_id_to_index[line.userId]
+    m = movie_id_to_index[line.movieId]
+    T[u, m] = line.rating
 
-# Split the ratings into 80% training and 20% test data
-random.shuffle(remaining_ratings)
-split = int(0.8 * len(remaining_ratings))
-train_data = guaranteed_train + remaining_ratings[:split]
-test_data = remaining_ratings[split:]
+V = np.zeros((n_users, n_items))
+for line in val_data.itertuples():
+    u = user_id_to_index[line.userId]
+    m = movie_id_to_index[line.movieId]
+    V[u, m] = line.rating
 
-# Create a training matrix
-R_train = np.zeros_like(train_matrix)
-for u, i, r in train_data:
-    R_train[u, i] = r
+# Index matrix for training data
+I = R.copy()
+I[I > 0] = 1
+I[I == 0] = 0
+
+# Index matrix for test data
+I2 = T.copy()
+I2[I2 > 0] = 1
+I2[I2 == 0] = 0
+
+# Index matrix for val data
+I3 = V.copy()
+I3[I3 > 0] = 1
+I3[I3 == 0] = 0
 
 # Print original matrix
-num_users, num_items = R_train.shape
-print(R_train)
-print(R_train.shape, "\n")
+num_users, num_items = R.shape
+print(R)
+print(R.shape, "\n")
 
 # User prompts (for cold start problem)
 #prompt_user_result = ALS_Cold_Start.prompt_user(filepath, movies, ratings)
 #print(prompt_user_result)
 
 # Hyperparameter
-#rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R_train, test_data, num_users, num_items)
+rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I3)
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_random(R_train, test_data, num_users, num_items)
-rank, reg, num_iter = (10, 0.1, 10)
-print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
+#rank, reg, num_iter = (20, 0.1, 15)
+#print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
-U, V = ALS_Training.als(R_train, test_data, num_users, num_items, num_iter, rank, reg)
+U, V = ALS_Training.als(R, T, num_users, num_items, I2, num_iter, rank, reg)
 predicted_R = ALS_Recommendation.predict(U, V)
 print(f"\n{np.round(predicted_R, 2)}")
 print(predicted_R.shape)
-ALS_Recommendation.save_features(U,V)
 exit(1)
+ALS_Recommendation.save_features(U,V)
 
 # Recommend
 user_id = 1
 output = True
 output_file = "output.txt"
-result = ALS_Recommendation.recommend_movies(user_id, train_matrix, predicted_R, output, output_file, filepath, ratings, movies)
+result = ALS_Recommendation.recommend_movies(user_id, R, predicted_R, output, output_file, filepath, ratings, movies)
 print(result)  # Show top 10 recommendations

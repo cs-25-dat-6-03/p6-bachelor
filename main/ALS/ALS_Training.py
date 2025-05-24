@@ -26,13 +26,14 @@ def update_V(R, U, V, num_features, lamb, num_items):                           
         b = U_rated.T @ R_i
         V[i] = np.linalg.solve(A, b)
 
-def als(R, test_data, num_users, num_items, num_iters = 10, num_features = 4, lamb = 0.1):
+def als(R, test_data, num_users, num_items, I, num_iters = 10, num_features = 4, lamb = 0.1):
     U = np.random.rand(num_users, num_features)
     V = np.random.rand(num_items, num_features)
     for i in range(num_iters):
         update_U(R, U, V, num_features, lamb, num_users)
         update_V(R, U, V, num_features, lamb, num_items)
 
-        rmse = ALS_Evaluation.compute_rmse(test_data, U, V)
+        #rmse = ALS_Evaluation.compute_rmse(test_data, U, V)
+        rmse = ALS_Evaluation.rmse(I, test_data, U, V)
         print(f"[ALS] Iteration {i+1}: RMSE = {rmse:.4f}")
     return (U, V)

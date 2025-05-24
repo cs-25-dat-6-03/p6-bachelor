@@ -24,3 +24,7 @@ def compute_rmse(test_data, U, V):
         se += (actual - prediction[u,i]) ** 2
     mse = se / len(test_data)
     return np.sqrt(mse)
+
+def rmse(I,R,U,V):
+    prediction = ALS_Recommendation.predict(U, V)
+    return np.sqrt(np.sum((I * (R - prediction))**2)/len(R[R > 0]))
