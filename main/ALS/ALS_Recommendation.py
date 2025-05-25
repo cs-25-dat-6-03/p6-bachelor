@@ -49,8 +49,8 @@ def recommend_movies(user_id, R, predicted_R, output, output_file, filepath, rat
         serendipity.append(result)
     unrated_movies_df['Serendipty'] = serendipity
 
-    # if output:
-    #     write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath, ratings, movies)
+    if output:
+        write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath, ratings, movies)
 
     return unrated_movies_df.head(100)
 
