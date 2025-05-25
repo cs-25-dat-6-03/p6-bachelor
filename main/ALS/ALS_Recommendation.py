@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from ALS import ALS_Evaluation
 
 filepath = "dataset/" 
 
@@ -10,7 +11,7 @@ def write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath
         file.write(f"Movies rated by user {user_id}:\n\n")
         file.write(user_rated_movies[['movieId', 'rating', 'title', 'genres']].to_string())
         file.write(f"\n\n\nTop recommendations for user {user_id}:\n\n")
-        file.write(unrated_movies_df.head(10).to_string())
+        file.write(unrated_movies_df.head(100).to_string())
     np.savetxt(filepath + "matrix.txt", np.round(predicted_R, 2), fmt="%.2f", delimiter=",")
 
 def recommend_movies(user_id, R, predicted_R, output, output_file, filepath, ratings, movies):
@@ -26,18 +27,37 @@ def recommend_movies(user_id, R, predicted_R, output, output_file, filepath, rat
     unrated_movie_titles = movies.set_index('movieId').loc[unrated_movie_ids]['title']
     unrated_movie_genres = movies.set_index('movieId').loc[unrated_movie_ids]['genres']
 
+    user_rated_movies = ratings[ratings['userId'] == user_id]
+    Historical = user_rated_movies[['movieId']]
+
+    I = np.sort(unrated_movie_ids.values[:100])[::-1]
+    H = Historical.values
+
+    serendipity_eval = 0
+    for i in I:
+        i_rating = predicted_R[i]
+        i_rating = i_rating.values
+        print(I)
+        exit(1)
+        
+        for h in H:
+            h_rating = pivot_table[int(h)]
+            h_rating = h_rating.values
+            serendipity_eval = ALS_Evaluation.serendipity_eval(i_rating,H)
+
     unrated_movies_df = pd.DataFrame({
         'Movie ID': unrated_movie_ids.values,
         'Predicted Rating': np.round(unrated_movie_ratings,1),
         'Recommended Movies': unrated_movie_titles.values,
-        'Genres': unrated_movie_genres.values
+        'Genres': unrated_movie_genres.values,
+        'Serendipity': serendipity_eval
     })
     unrated_movies_df = unrated_movies_df.sort_values(by='Predicted Rating', ascending=False)
 
     if output:
         write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath, ratings, movies)
 
-    return unrated_movies_df.head(10)
+    return unrated_movies_df.head(100)
 
 def save_features(U, V):
     np.savetxt(filepath + "user_matrix.txt", np.round(U, 2), fmt="%.2f", delimiter=",")
