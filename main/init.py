@@ -68,9 +68,9 @@ print(R.shape, "\n")
 #print(prompt_user_result)
 
 # Hyperparameter
-rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I3)
+#rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I3)
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_random(R_train, test_data, num_users, num_items)
-#rank, reg, num_iter = (20, 0.1, 15)
+rank, reg, num_iter = (20, 0.1, 15)
 #print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
@@ -78,7 +78,7 @@ U, V = ALS_Training.als(R, T, num_users, num_items, I2, num_iter, rank, reg)
 predicted_R = ALS_Recommendation.predict(U, V)
 print(f"\n{np.round(predicted_R, 2)}")
 print(predicted_R.shape)
-exit(1)
+#exit(1)
 ALS_Recommendation.save_features(U,V)
 
 # Recommend
