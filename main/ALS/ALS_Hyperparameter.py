@@ -3,7 +3,7 @@ from ALS import ALS_Cold_Start, ALS_Training, ALS_Recommendation, ALS_Hyperparam
 
 filepath = "dataset/" 
 
-def hyperparameter_tuning_grid(R, test_data, num_users, num_items, I):
+def hyperparameter_tuning_grid(R, test_data, num_users, num_items, I, I3):
     best_rmse = float('inf')
     best_params = None
 
@@ -18,9 +18,10 @@ def hyperparameter_tuning_grid(R, test_data, num_users, num_items, I):
                     print(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
                     file.write(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
 
-                    U, V = ALS_Training.als(R, test_data, num_users, num_items, I, num_iter, rank, reg)
+                    #U, V = ALS_Training.als(R, V, num_users, num_items, I, num_iter, rank, reg)
+                    U, V = ALS_Training.als2(R, test_data, I, I3, reg, rank, num_iter, num_users, num_items)
                     
-                    rmse = ALS_Evaluation.rmse(I, test_data, U, V)
+                    rmse = ALS_Evaluation.rmse(I3, test_data, U, V)
                     print(f"Validation RMSE = {rmse:.4f}")
                     file.write(f"\tValidation RMSE = {rmse:.4f}\n")
 
@@ -33,7 +34,7 @@ def hyperparameter_tuning_grid(R, test_data, num_users, num_items, I):
                     # file.write(f"Best hyperparameters: {best_params}\n")
                     # file.write(f"Best RMSE: {best_rmse}\n\n")
                     file.flush()
-        file.write(f"\n\nBest hyperparameters: {best_params}\n")
+        file.write(f"Best hyperparameters: {best_params}\n")
         file.write(f"Best RMSE: {best_rmse}")
     return best_params
 

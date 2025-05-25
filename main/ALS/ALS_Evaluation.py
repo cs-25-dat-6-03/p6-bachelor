@@ -27,6 +27,7 @@ def compute_rmse(test_data, U, V):
 
 def rmse(I,R,U,V):
     prediction = ALS_Recommendation.predict(U, V)
+    #prediction = np.clip(prediction, 0.5, 5.0)
     return np.sqrt(np.sum((I * (R - prediction))**2)/len(R[R > 0]))
 
 def unexpectedness(i, h):
@@ -42,4 +43,3 @@ def relevance(i):
 
 def serendipity_eval(i, h, H): # I is the top 100 recommendations of user i, H is the historical interactions of user i  
     return unexpectedness(i, h) * relevance(i)
-
