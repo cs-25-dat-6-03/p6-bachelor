@@ -27,35 +27,30 @@ def recommend_movies(user_id, R, predicted_R, output, output_file, filepath, rat
     unrated_movie_titles = movies.set_index('movieId').loc[unrated_movie_ids]['title']
     unrated_movie_genres = movies.set_index('movieId').loc[unrated_movie_ids]['genres']
 
-    user_rated_movies = ratings[ratings['userId'] == user_id]
-    Historical = user_rated_movies[['movieId']]
-
-    I = np.sort(unrated_movie_ids.values[:100])[::-1]
-    H = Historical.values
-
-    serendipity_eval = 0
-    for i in I:
-        i_rating = predicted_R[i]
-        i_rating = i_rating.values
-        print(I)
-        exit(1)
-        
-        for h in H:
-            h_rating = pivot_table[int(h)]
-            h_rating = h_rating.values
-            serendipity_eval = ALS_Evaluation.serendipity_eval(i_rating,H)
-
     unrated_movies_df = pd.DataFrame({
         'Movie ID': unrated_movie_ids.values,
         'Predicted Rating': np.round(unrated_movie_ratings,1),
         'Recommended Movies': unrated_movie_titles.values,
-        'Genres': unrated_movie_genres.values,
-        'Serendipity': serendipity_eval
+        'Genres': unrated_movie_genres.values
     })
     unrated_movies_df = unrated_movies_df.sort_values(by='Predicted Rating', ascending=False)
 
-    if output:
-        write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath, ratings, movies)
+    # Serendipty
+    user_rated_movies = ratings[ratings['userId'] == user_id]
+    Historical = user_rated_movies[['movieId']]
+
+    #unrated_movies_df.head(100)['Movie ID'].values
+    I = unrated_movies_df[['Movie ID', 'Predicted Rating']].values
+    H = Historical.values
+    
+    serendipity = []
+    for i,i_pred in I:
+        result = ALS_Evaluation.serendipity_eval(i, H, pivot_table, i_pred)
+        serendipity.append(result)
+    unrated_movies_df['Serendipty'] = serendipity
+
+    # if output:
+    #     write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath, ratings, movies)
 
     return unrated_movies_df.head(100)
 

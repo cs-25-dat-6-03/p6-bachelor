@@ -30,16 +30,29 @@ def rmse(I,R,U,V):
     #prediction = np.clip(prediction, 0.5, 5.0)
     return np.sqrt(np.sum((I * (R - prediction))**2)/len(R[R > 0]))
 
-def unexpectedness(i, h):
-    cosine = np.dot(i, h) / (np.linalg.norm(i) * np.linalg.norm(h))
-    cosine = np.round(cosine,2)
-    
-    return 1 - (cosine / len(H))
+def unexpectedness(i, H, pivot_table):
+    sum = 0
+    for k in H:
+        h_rating = pivot_table[int(k)]
+        h = h_rating.values
+
+        cosine = np.dot(i, h) / (np.linalg.norm(i) * np.linalg.norm(h))
+        #cosine = np.round(cosine,2)
+
+        sum += cosine
+        
+    return 1 - (sum / len(H))
 
 def relevance(i):
-    i = min(5.0, max(0.5, i))
+    if i > 5:
+        i = 5
+    elif i < 0.5:
+        i = 0.5
     return (i - 0.5)/4.5
 
 
-def serendipity_eval(i, h, H): # I is the top 100 recommendations of user i, H is the historical interactions of user i  
-    return unexpectedness(i, h) * relevance(i)
+def serendipity_eval(i, H, pivot_table, i_pred): # I is the top 100 recommendations of user i, H is the historical interactions of user i  
+    i_rating = pivot_table[i]
+    i = i_rating.values
+        
+    return unexpectedness(i, H, pivot_table) * relevance(i_pred)
