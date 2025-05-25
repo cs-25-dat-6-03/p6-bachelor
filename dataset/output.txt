@@ -237,14 +237,104 @@ Movies rated by user 1:
 
 Top recommendations for user 1:
 
-      Movie ID  Predicted Rating                                     Recommended Movies                               Genres
-260        318               6.1                       Shawshank Redemption, The (1994)                          Crime|Drama
-1069      1527               5.7                              Fifth Element, The (1997)       Action|Adventure|Comedy|Sci-Fi
-4598      7153               5.6  Lord of the Rings: The Return of the King, The (2003)       Action|Adventure|Drama|Fantasy
-1604      2324               5.5             Life Is Beautiful (La Vita è bella) (1997)             Comedy|Drama|Romance|War
-6829     68954               5.5                                              Up (2009)   Adventure|Animation|Children|Drama
-1667      2396               5.4                             Shakespeare in Love (1998)                 Comedy|Drama|Romance
-1371      1997               5.3                                   Exorcist, The (1973)                       Horror|Mystery
-4161      6377               5.3                                    Finding Nemo (2003)  Adventure|Animation|Children|Comedy
-792       1125               5.3                 Return of the Pink Panther, The (1975)                         Comedy|Crime
-5676     33166               5.3                                           Crash (2004)                          Crime|Drama
+      Movie ID  Predicted Rating                                                         Recommended Movies                                              Genres
+2414      3421               6.8                                                        Animal House (1978)                                              Comedy
+7448     87232               6.6                                                  X-Men: First Class (2011)                Action|Adventure|Sci-Fi|Thriller|War
+173        215               6.6                                                      Before Sunrise (1995)                                       Drama|Romance
+5982     44195               6.6                                               Thank You for Smoking (2006)                                        Comedy|Drama
+1588      2268               6.6                                                     Few Good Men, A (1992)                                Crime|Drama|Thriller
+5570     30810               6.4                                 Life Aquatic with Steve Zissou, The (2004)                            Adventure|Comedy|Fantasy
+6337     53519               6.3                                                         Death Proof (2007)              Action|Adventure|Crime|Horror|Thriller
+7131     76093               6.3                                            How to Train Your Dragon (2010)           Adventure|Animation|Children|Fantasy|IMAX
+778       1084               6.3                                                    Bonnie and Clyde (1967)                                         Crime|Drama
+5845     38061               6.2                                                 Kiss Kiss Bang Bang (2005)                       Comedy|Crime|Mystery|Thriller
+907       1272               6.1                                                              Patton (1970)                                           Drama|War
+6554     58998               6.1                                           Forgetting Sarah Marshall (2008)                                      Comedy|Romance
+2735      3868               6.0                     Naked Gun: From the Files of Police Squad!, The (1988)                         Action|Comedy|Crime|Romance
+6505     57669               6.0                                                           In Bruges (2008)                         Comedy|Crime|Drama|Thriller
+788       1097               6.0                                          E.T. the Extra-Terrestrial (1982)                               Children|Drama|Sci-Fi
+8277    112138               6.0                                                      22 Jump Street (2014)                                 Action|Comedy|Crime
+7473     88129               6.0                                                               Drive (2011)                      Crime|Drama|Film-Noir|Thriller
+7041     72998               5.9                                                              Avatar (2009)                        Action|Adventure|Sci-Fi|IMAX
+5201      8950               5.9                                                       The Machinist (2004)                              Drama|Mystery|Thriller
+7891     99114               5.9                                                    Django Unchained (2012)                                Action|Drama|Western
+4785      7458               5.9                                                                Troy (2004)                          Action|Adventure|Drama|War
+3825      5618               5.9                       Spirited Away (Sen to Chihiro no kamikakushi) (2001)                         Adventure|Animation|Fantasy
+486        596               5.9                                                           Pinocchio (1940)                  Animation|Children|Fantasy|Musical
+6350     53996               5.9                                                        Transformers (2007)                         Action|Sci-Fi|Thriller|IMAX
+1602      2289               5.9                                                         Player, The (1992)                                  Comedy|Crime|Drama
+8294    112552               5.9                                                            Whiplash (2014)                                               Drama
+2051      2890               5.8                                                         Three Kings (1999)                   Action|Adventure|Comedy|Drama|War
+1202      1690               5.8                                                 Alien: Resurrection (1997)                                Action|Horror|Sci-Fi
+7184     78499               5.8                                                         Toy Story 3 (2010)    Adventure|Animation|Children|Comedy|Fantasy|IMAX
+661        913               5.8                                                 Maltese Falcon, The (1941)                                   Film-Noir|Mystery
+749       1035               5.8                                                 Sound of Music, The (1965)                                     Musical|Romance
+7242     80463               5.8                                                 Social Network, The (2010)                                               Drama
+1903      2694               5.8                                                           Big Daddy (1999)                                              Comedy
+870       1228               5.7                                                         Raging Bull (1980)                                               Drama
+2525      3578               5.7                                                           Gladiator (2000)                              Action|Adventure|Drama
+2373      3361               5.7                                                         Bull Durham (1988)                                Comedy|Drama|Romance
+6868     68954               5.7                                                                  Up (2009)                  Adventure|Animation|Children|Drama
+289        345               5.7                   Adventures of Priscilla, Queen of the Desert, The (1994)                                        Comedy|Drama
+7833     97304               5.7                                                                Argo (2012)                                      Drama|Thriller
+3981      5956               5.7                                                   Gangs of New York (2002)                                         Crime|Drama
+1458      2081               5.7                                                 Little Mermaid, The (1989)           Animation|Children|Comedy|Musical|Romance
+6282     52281               5.7                                                          Grindhouse (2007)                 Action|Crime|Horror|Sci-Fi|Thriller
+2450      3471               5.7                                  Close Encounters of the Third Kind (1977)                              Adventure|Drama|Sci-Fi
+1160      1641               5.7                                                     Full Monty, The (1997)                                        Comedy|Drama
+2853      4027               5.7                                          O Brother, Where Art Thou? (2000)                              Adventure|Comedy|Crime
+902       1266               5.7                                                          Unforgiven (1992)                                       Drama|Western
+8303    112852               5.7                                             Guardians of the Galaxy (2014)                             Action|Adventure|Sci-Fi
+1593      2278               5.7                                                               Ronin (1998)                               Action|Crime|Thriller
+2093      2951               5.7                     Fistful of Dollars, A (Per un pugno di dollari) (1964)                                      Action|Western
+2280      3210               5.6                                        Fast Times at Ridgemont High (1982)                                Comedy|Drama|Romance
+4016      6016               5.6                                        City of God (Cidade de Deus) (2002)               Action|Adventure|Crime|Drama|Thriller
+652        904               5.6                                                         Rear Window (1954)                                    Mystery|Thriller
+6140     48394               5.6                           Pan's Labyrinth (Laberinto del fauno, El) (2006)                              Drama|Fantasy|Thriller
+1573      2248               5.6                                                     Say Anything... (1989)                                Comedy|Drama|Romance
+1610      2300               5.6                                                      Producers, The (1968)                                              Comedy
+6317     53125               5.6                            Pirates of the Caribbean: At World's End (2007)                     Action|Adventure|Comedy|Fantasy
+1849      2599               5.6                                                            Election (1999)                                              Comedy
+3680      5388               5.6                                                            Insomnia (2002)                 Action|Crime|Drama|Mystery|Thriller
+6714     63082               5.6                                                 Slumdog Millionaire (2008)                                 Crime|Drama|Romance
+898       1261               5.6                                         Evil Dead II (Dead by Dawn) (1987)                        Action|Comedy|Fantasy|Horror
+851       1201               5.6  Good, the Bad and the Ugly, The (Buono, il brutto, il cattivo, Il) (1966)                            Action|Adventure|Western
+2593      3681               5.6                 For a Few Dollars More (Per qualche dollaro in più) (1965)                       Action|Drama|Thriller|Western
+8131    106696               5.5                                                              Frozen (2013)  Adventure|Animation|Comedy|Fantasy|Musical|Romance
+6144     48516               5.5                                                       Departed, The (2006)                                Crime|Drama|Thriller
+1716      2423               5.5          Christmas Vacation (National Lampoon's Christmas Vacation) (1989)                                              Comedy
+5911     41716               5.5                                                        Matador, The (2005)                               Comedy|Drama|Thriller
+6175     49272               5.5                                                       Casino Royale (2006)                           Action|Adventure|Thriller
+1957      2762               5.5                                                    Sixth Sense, The (1999)                                Drama|Horror|Mystery
+8017    103141               5.5                                                 Monsters University (2013)                          Adventure|Animation|Comedy
+2152      3030               5.5                                                             Yojimbo (1961)                                    Action|Adventure
+2301      3252               5.5                                                    Scent of a Woman (1992)                                               Drama
+7979    102125               5.5                                                          Iron Man 3 (2013)                         Action|Sci-Fi|Thriller|IMAX
+1626      2321               5.5                                                       Pleasantville (1998)                                Comedy|Drama|Fantasy
+7783     96079               5.5                                                             Skyfall (2012)                      Action|Adventure|Thriller|IMAX
+7596     91529               5.5                                              Dark Knight Rises, The (2012)                         Action|Adventure|Crime|IMAX
+859       1213               5.5                                                          Goodfellas (1990)                                         Crime|Drama
+4407      6787               5.4                                             All the President's Men (1976)                                      Drama|Thriller
+8519    122904               5.4                                                            Deadpool (2016)                      Action|Adventure|Comedy|Sci-Fi
+6821     67255               5.4            Girl with the Dragon Tattoo, The (Män som hatar kvinnor) (2009)                        Crime|Drama|Mystery|Thriller
+2069      2915               5.4                                                      Risky Business (1983)                                              Comedy
+1872      2640               5.4                                                            Superman (1978)                             Action|Adventure|Sci-Fi
+3386      4848               5.4                                                    Mulholland Drive (2001)              Crime|Drama|Film-Noir|Mystery|Thriller
+1923      2722               5.4                                                       Deep Blue Sea (1999)                       Action|Horror|Sci-Fi|Thriller
+7604     91658               5.4                                    Girl with the Dragon Tattoo, The (2011)                                      Drama|Thriller
+4466      6893               5.4                                                    Italian Job, The (1969)                                 Action|Comedy|Crime
+1211      1704               5.4                                                   Good Will Hunting (1997)                                       Drama|Romance
+7367     84944               5.4                                                               Rango (2011)  Action|Adventure|Animation|Children|Comedy|Western
+7748     95441               5.4                                                                 Ted (2012)                                      Comedy|Fantasy
+2832      4002               5.4                                        Planes, Trains & Automobiles (1987)                                              Comedy
+8397    116797               5.4                                                  The Imitation Game (2014)                                  Drama|Thriller|War
+667        920               5.4                                                  Gone with the Wind (1939)                                   Drama|Romance|War
+1487      2118               5.4                                                      Dead Zone, The (1983)                                            Thriller
+12          16               5.3                                                              Casino (1995)                                         Crime|Drama
+1773      2502               5.3                                                        Office Space (1999)                                        Comedy|Crime
+5502     27660               5.3                                                      Animatrix, The (2003)                       Action|Animation|Drama|Sci-Fi
+6539     58559               5.3                                                    Dark Knight, The (2008)                             Action|Crime|Drama|IMAX
+357        431               5.3                                                       Carlito's Way (1993)                                         Crime|Drama
+6646     61024               5.3                                                   Pineapple Express (2008)                                 Action|Comedy|Crime
+7135     76251               5.3                                                            Kick-Ass (2010)                                       Action|Comedy
+886       1247               5.3                                                       Graduate, The (1967)                                Comedy|Drama|Romance
