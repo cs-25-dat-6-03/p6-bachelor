@@ -18,11 +18,31 @@ n_items = ratings.movieId.unique().shape[0]
 movie_id_to_index = {mid: idx for idx, mid in enumerate(sorted(ratings.movieId.unique()))}
 user_id_to_index = {uid: idx for idx, uid in enumerate(sorted(ratings.userId.unique()))}
 
-train_data, test_data = train_test_split(ratings, test_size=0.2, random_state=42)
-train_data, val_data = train_test_split(train_data, test_size=0.2, random_state=42)
-train_data = pd.DataFrame(train_data)
-test_data = pd.DataFrame(test_data)
-val_data = pd.DataFrame(val_data)
+# Per-user splitting 
+def user_stratified_split(ratings, test_size=0.2, val_size=0.2, seed=42):
+    train_rows = []
+    val_rows = []
+    test_rows = []
+
+    for user_id, user_ratings in ratings.groupby("userId"):
+        if len(user_ratings) >= 5: # Users with fewer than 5 ratings go in training (else-statement)
+            user_train_val, user_test = train_test_split(user_ratings, test_size=test_size, random_state=seed)
+            user_train, user_val = train_test_split(user_train_val, test_size=val_size, random_state=seed)
+        else:
+            user_train, user_val, user_test = user_ratings, [], []
+
+        train_rows.append(user_train)
+        val_rows.append(user_val)
+        test_rows.append(user_test)
+
+    train_data = pd.concat(train_rows).reset_index(drop=True)
+    val_data = pd.concat(val_rows).reset_index(drop=True)
+    test_data = pd.concat(test_rows).reset_index(drop=True)
+    return train_data, val_data, test_data
+
+train_data, val_data, test_data = user_stratified_split(ratings)
+print(train_data)
+exit(1)
 
 # Create training and test matrix
 R = np.zeros((n_users, n_items))
@@ -70,7 +90,7 @@ print(R.shape, "\n")
 # Hyperparameter
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I3)
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_random(R_train, test_data, num_users, num_items)
-rank, reg, num_iter = (20, 0.1, 15)
+rank, reg, num_iter = (90, 0.1, 50)
 #print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
