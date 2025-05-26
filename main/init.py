@@ -70,7 +70,7 @@ print(R.shape, "\n")
 # Hyperparameter
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I3)
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_random(R_train, test_data, num_users, num_items)
-rank, reg, num_iter = (20, 0.1, 15)
+rank, reg, num_iter = (90, 0.1, 50)
 #print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
