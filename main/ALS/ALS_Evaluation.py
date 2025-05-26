@@ -50,9 +50,14 @@ def relevance(i):
         i = 0.5
     return (i - 0.5)/4.5
 
-
 def serendipity_eval(i, H, pivot_table, i_pred): # I is the top 100 recommendations of user i, H is the historical interactions of user i  
     i_rating = pivot_table[i]
     i = i_rating.values
         
     return unexpectedness(i, H, pivot_table) * relevance(i_pred)
+
+def exposure(i,highest,lowest):
+    return 100 + ((i - lowest)*(-99)/(highest - lowest))
+
+def exposure_fairness(i_pred, i, highest, lowest):
+    return exposure(i, highest, lowest) * relevance(i_pred)
