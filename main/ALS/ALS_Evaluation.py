@@ -25,10 +25,15 @@ def compute_rmse(test_data, U, V):
     mse = se / len(test_data)
     return np.sqrt(mse)
 
-def rmse(I,R,U,V):
+def rmse(I, R, U, V):
     prediction = ALS_Recommendation.predict(U, V)
-    #prediction = np.clip(prediction, 0.5, 5.0)
-    return np.sqrt(np.sum((I * (R - prediction))**2)/len(R[R > 0]))
+    error = I * (R - prediction)
+    return np.sqrt(np.sum(error**2) / np.count_nonzero(R))
+
+def mse(I, R, U, V):
+    prediction = ALS_Recommendation.predict(U, V)
+    error = I * (R - prediction)
+    return np.sum(error**2) / np.count_nonzero(R)
 
 def unexpectedness(i, H, pivot_table):
     sum = 0
@@ -37,10 +42,7 @@ def unexpectedness(i, H, pivot_table):
         h = h_rating.values
 
         cosine = np.dot(i, h) / (np.linalg.norm(i) * np.linalg.norm(h))
-        #cosine = np.round(cosine,2)
-
         sum += cosine
-        
     return 1 - (sum / len(H))
 
 def relevance(i):
@@ -54,5 +56,4 @@ def relevance(i):
 def serendipity_eval(i, H, pivot_table, i_pred): # I is the top 100 recommendations of user i, H is the historical interactions of user i  
     i_rating = pivot_table[i]
     i = i_rating.values
-        
     return unexpectedness(i, H, pivot_table) * relevance(i_pred)
