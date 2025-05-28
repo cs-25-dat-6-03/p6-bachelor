@@ -15,15 +15,15 @@ from ALS import ALS_Recommendation
 #     mse = se / len(test_data)
 #     return np.sqrt(mse)
 
-def compute_rmse(test_data, U, V):
-    se = 0  # sum of squared errors
-    prediction = ALS_Recommendation.predict(U, V)
-    for u, i, actual in test_data:
-        #pred = prediction[u,i]
-        #pred = min(5.0, max(0.5, pred))
-        se += (actual - prediction[u,i]) ** 2
-    mse = se / len(test_data)
-    return np.sqrt(mse)
+# def compute_rmse(test_data, U, V):
+#     se = 0  # sum of squared errors
+#     prediction = ALS_Recommendation.predict(U, V)
+#     for u, i, actual in test_data:
+#         #pred = prediction[u,i]
+#         #pred = min(5.0, max(0.5, pred))
+#         se += (actual - prediction[u,i]) ** 2
+#     mse = se / len(test_data)
+#     return np.sqrt(mse)
 
 def rmse(I, R, U, V):
     prediction = ALS_Recommendation.predict(U, V)

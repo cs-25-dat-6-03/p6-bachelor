@@ -80,7 +80,7 @@ rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_us
 
 # Predict
 #U, V = ALS_Training.als(R, T, num_users, num_items, I2, num_iter, rank, reg)
-U, V = ALS_Training.als2(R, T, I, I2, reg, rank, num_iter, num_users, num_items)
+U, V = ALS_Training.als(R, T, I, I2, reg, rank, num_iter, num_users, num_items)
 predicted_R = ALS_Recommendation.predict(U, V)
 #predicted_R = np.clip(predicted_R, 0.5, 5.0)
 print(f"\n{np.round(predicted_R, 2)}")
