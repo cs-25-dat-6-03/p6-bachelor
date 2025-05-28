@@ -66,10 +66,19 @@ def recommend_movies(user_id, R, predicted_R, output, output_file, filepath, rat
         nonzero_ratings = pivot_table[i][pivot_table[i] > 0]
         i_exposure = nonzero_ratings.shape[0]
 
+        movie_counts = ratings.groupby('movieId').size()
+        global_avg_count = movie_counts.mean()
+        C = global_avg_count
+
+        # Bayesian average amount of ratings for the whole dataset
+        bayesian_avg_amount = ((C * global_avg_count + movie_counts).sum()) / ((C + 1) * len(movie_counts))
+        print(bayesian_avg_amount)
+        #exit(1)
+
         nonzero_counts = (pivot_table > 0).sum(axis=0)
         highest = nonzero_counts.max()
         lowest = nonzero_counts.min()
-        result = ALS_Evaluation.exposure_fairness(i_pred, i_exposure, highest, lowest) 
+        result = ALS_Evaluation.exposure_fairness(i_pred, i_exposure, bayesian_avg_amount, lowest) 
         fairness.append(result)
 
     unrated_movies_df['Serendipity'] = np.round(serendipity,2)
