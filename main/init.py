@@ -4,7 +4,7 @@ import random
 from sklearn.model_selection import ParameterGrid
 from sklearn.model_selection import train_test_split
 from scipy.sparse import csr_matrix
-from ALS import ALS_Cold_Start, ALS_Training, ALS_Recommendation, ALS_Hyperparameter
+from ALS import ALS_Cold_Start, ALS_Training, ALS_Recommendation, ALS_Hyperparameter, ALS_Evaluation
 
 # File handling
 filepath = "dataset/" 
@@ -19,7 +19,7 @@ movie_id_to_index = {mid: idx for idx, mid in enumerate(sorted(ratings.movieId.u
 user_id_to_index = {uid: idx for idx, uid in enumerate(sorted(ratings.userId.unique()))}
 
 # Per-user splitting 
-def user_stratified_split(ratings, test_size=0.2, val_size=0.2, seed=42):
+def user_split(ratings, test_size=0.2, val_size=0.2, seed=42):
     train_rows = []
     val_rows = []
     test_rows = []
@@ -40,55 +40,42 @@ def user_stratified_split(ratings, test_size=0.2, val_size=0.2, seed=42):
     test_data = pd.concat(test_rows).reset_index(drop=True)
     return train_data, val_data, test_data
 
-train_data, val_data, test_data = user_stratified_split(ratings)
+train_data, val_data, test_data = user_split(ratings)
 
 # Create training and test matrix
-R = np.zeros((n_users, n_items))
-for line in train_data.itertuples():
-    u = user_id_to_index[line.userId]
-    m = movie_id_to_index[line.movieId]
-    R[u, m] = line.rating
+def df_to_sparse_matrix(df, n_users, n_items, user_id_to_index, movie_id_to_index):
+    row_inds = df['userId'].map(user_id_to_index)
+    col_inds = df['movieId'].map(movie_id_to_index)
+    data = df['rating']
+    return csr_matrix((data, (row_inds, col_inds)), shape=(n_users, n_items))
 
-T = np.zeros((n_users, n_items))
-for line in test_data.itertuples():
-    u = user_id_to_index[line.userId]
-    m = movie_id_to_index[line.movieId]
-    T[u, m] = line.rating
+# Sparse rating matrices
+R = df_to_sparse_matrix(train_data, n_users, n_items, user_id_to_index, movie_id_to_index)
+T = df_to_sparse_matrix(test_data, n_users, n_items, user_id_to_index, movie_id_to_index)
+V = df_to_sparse_matrix(val_data, n_users, n_items, user_id_to_index, movie_id_to_index)
 
-V = np.zeros((n_users, n_items))
-for line in val_data.itertuples():
-    u = user_id_to_index[line.userId]
-    m = movie_id_to_index[line.movieId]
-    V[u, m] = line.rating
-
-# Index matrix for training data
+# Binary index matrices (sparse masks)
 I = R.copy()
-I[I > 0] = 1
-I[I == 0] = 0
+I.data = np.ones_like(I.data)
 
-# Index matrix for test data
 I2 = T.copy()
-I2[I2 > 0] = 1
-I2[I2 == 0] = 0
+I2.data = np.ones_like(I2.data)
 
-# Index matrix for val data
 I3 = V.copy()
-I3[I3 > 0] = 1
-I3[I3 == 0] = 0
-
+I3.data = np.ones_like(I3.data)
 # Print original matrix
 num_users, num_items = R.shape
-print(R)
+#print(R)
 print(R.shape, "\n")
 
 # User prompts (for cold start problem)
-#prompt_user_result = ALS_Cold_Start.prompt_user(filepath, movies, ratings)
-#print(prompt_user_result)
+prompt_user_result = ALS_Cold_Start.prompt_user(filepath, movies, ratings)
+print(prompt_user_result)
 
 # Hyperparameter
-#rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I3)
+rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I, I3)
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_random(R_train, test_data, num_users, num_items)
-rank, reg, num_iter = (90, 0.1, 50)
+#rank, reg, num_iter = (100, 0.1, 50)
 #print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
@@ -98,12 +85,12 @@ predicted_R = ALS_Recommendation.predict(U, V)
 #predicted_R = np.clip(predicted_R, 0.5, 5.0)
 print(f"\n{np.round(predicted_R, 2)}")
 print(predicted_R.shape)
-exit(1)
+#exit(1)
 ALS_Recommendation.save_features(U,V)
 
 # Recommend
 user_id = 1
 output = True
 output_file = "output.txt"
-result = ALS_Recommendation.recommend_movies(user_id, R, predicted_R, output, output_file, filepath, ratings, movies)
+result = ALS_Recommendation.recommend_movies(user_id, R, T, predicted_R, output, output_file, filepath, ratings, movies)
 print(result)  # Show top 10 recommendations

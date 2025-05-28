@@ -40,46 +40,39 @@ def als(R, test_data, num_users, num_items, I, num_iters = 10, num_features = 4,
     return (U, V)
 
 def update_U2(R, U, V, I, lamb, num_features):
-     for i, Ii in enumerate(I):
-        nui = np.count_nonzero(Ii) # Number of items user has rated
-        if (nui == 0): nui = 1
+    for i in range(I.shape[0]):
+        Ii = I.getrow(i).toarray().ravel()
+        nui = np.count_nonzero(Ii)  # Number of items user has rated
+        if nui == 0: nui = 1
 
-        # Get array of nonzero indices in row Ii
         Ii_nonzero = np.nonzero(Ii)[0]
 
-        # Select subset of Q associated with movies reviewed by user i
-        V_Ii = V[:, Ii_nonzero]
+        V_Ii = V[Ii_nonzero, :]  # (num_rated_items, num_features)
+        R_Ii = R[i, Ii_nonzero].toarray().ravel()
+        Ai = V_Ii.T @ V_Ii + lamb * nui * np.eye(num_features)
+        Vi = V_Ii.T @ R_Ii
 
-        # Select subset of row R_i associated with movies reviewed by user i
-        R_Ii = R[i, Ii_nonzero]
-        Ai = np.dot(V_Ii, V_Ii.T) + lamb * nui * np.eye(num_features)
-        Vi = np.dot(V_Ii, R_Ii.T)
-
-        U[:, i] = np.linalg.solve(Ai, Vi)
-     
+        U[i, :] = np.linalg.solve(Ai, Vi)
 
 def update_V2(R, U, V, I, lamb, num_features):
-    for j, Ij in enumerate(I.T):
+    for j in range(I.shape[1]):
+        Ij = I.getcol(j).toarray().ravel()
         nmj = np.count_nonzero(Ij) # Number of users that rated item j
-        if (nmj == 0): nmj = 1
+        if nmj == 0: nmj = 1
 
-        # Get array of nonzero indices in row Ij
         Ij_nonzero = np.nonzero(Ij)[0]
 
-        # Select subset of P associated with users who reviewed movie j
-        U_Ij = U[:, Ij_nonzero]
+        U_Ij = U[Ij_nonzero, :]  # (num_rated_users, num_features)
+        R_Ij = R[Ij_nonzero, j].toarray().ravel()
+        Aj = U_Ij.T @ U_Ij + lamb * nmj * np.eye(num_features)
+        Vj = U_Ij.T @ R_Ij
 
-        # Select subset of column R_j associated with users who reviewed movie j
-        R_Ij = R[Ij_nonzero, j]
-        Aj = np.dot(U_Ij, U_Ij.T) + lamb * nmj * np.eye(num_features)
-        Vj = np.dot(U_Ij, R_Ij)
-
-        V[:,j] = np.linalg.solve(Aj,Vj)
+        V[j, :] = np.linalg.solve(Aj, Vj)
 
 def als2(R, test_data, I, I2, lamb, num_features, num_iters, num_users, num_items):
-    U = 3 * np.random.rand(num_features, num_users)
-    V = 3 * np.random.rand(num_features, num_items)
-    V[0,:] = R[R != 0].mean(axis=0)
+    U = 3 * np.random.rand(num_users, num_features)
+    V = 3 * np.random.rand(num_items, num_features)
+    #V[:, 0] = np.array(R.mean(axis=0)).ravel()[:num_items] 
     for k in range(num_iters):
         update_U2(R, U, V, I, lamb, num_features)
         update_V2(R, U, V, I, lamb, num_features)

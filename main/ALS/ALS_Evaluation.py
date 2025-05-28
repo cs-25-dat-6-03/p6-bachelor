@@ -28,8 +28,9 @@ def compute_rmse(test_data, U, V):
 def rmse(I, R, U, V):
     prediction = ALS_Recommendation.predict(U, V)
     prediction = np.clip(prediction, 0.5, 5.0)
-    error = I * (R - prediction)
-    return np.sqrt(np.sum(error**2) / np.count_nonzero(R))
+    error = I.multiply(R - prediction)  # Use .multiply for sparse elementwise
+    mse = (error.power(2)).sum() / I.sum()
+    return np.sqrt(mse)
 
 def mse(I, R, U, V):
     prediction = ALS_Recommendation.predict(U, V)
@@ -44,6 +45,7 @@ def unexpectedness(i, H, pivot_table):
         h = h_rating.values
 
         cosine = np.dot(i, h) / (np.linalg.norm(i) * np.linalg.norm(h))
+
         sum += cosine
     return 1 - (sum / len(H))
 
@@ -54,8 +56,13 @@ def relevance(i):
         i = 0.5
     return (i - 0.5)/4.5
 
-
 def serendipity_eval(i, H, pivot_table, i_pred): # I is the top 100 recommendations of user i, H is the historical interactions of user i  
     i_rating = pivot_table[i]
     i = i_rating.values
     return unexpectedness(i, H, pivot_table) * relevance(i_pred)
+
+def exposure(i,highest,lowest):
+    return 100 + ((i - lowest)*(-99)/(highest - lowest))
+
+def exposure_fairness(i_pred, i, highest, lowest):
+    return exposure(i, highest, lowest) * relevance(i_pred)

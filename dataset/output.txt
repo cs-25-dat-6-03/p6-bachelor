@@ -237,104 +237,354 @@ Movies rated by user 1:
 
 Top recommendations for user 1:
 
-      Movie ID  Predicted Rating                                                                                                  Recommended Movies                                      Genres  Serendipty
-7199     78836               5.2                                                                                               Enter the Void (2009)                                       Drama    0.951098
-9452    177593               5.2                                                                    Three Billboards Outside Ebbing, Missouri (2017)                                 Crime|Drama    0.923974
-266        318               5.2                                                                                    Shawshank Redemption, The (1994)                                 Crime|Drama    0.737749
-4879      7842               5.1                                                                                                         Dune (2000)                        Drama|Fantasy|Sci-Fi    0.914255
-2386      3379               5.1                                                                                                 On the Beach (1959)                                       Drama    0.906519
-2467      3494               5.1                                                                                                    True Grit (1969)                     Adventure|Drama|Western    0.853044
-883       1245               5.1                                                                                            Miller's Crossing (1990)              Crime|Drama|Film-Noir|Thriller    0.843043
-4611      7096               5.1                                                                                             Rivers and Tides (2001)                                 Documentary    0.995544
-7538     89904               5.1                                                                                                   The Artist (2011)                        Comedy|Drama|Romance    0.854817
-8905    142488               5.1                                                                                                    Spotlight (2015)                                    Thriller    0.867057
-629        858               5.1                                                                                               Godfather, The (1972)                                 Crime|Drama    0.699430
-4551      7025               5.1                                                                                            Midnight Clear, A (1992)                                   Drama|War    0.984979
-5419     26810               5.0                                                                                                Bad Boy Bubby (1993)                                       Drama    0.970418
-2451      3468               5.0                                                                                                 Hustler, The (1961)                                       Drama    0.875731
-2151      3022               5.0                                                                                                 General, The (1926)                                  Comedy|War    0.888385
-833       1178               5.0                                                                                               Paths of Glory (1957)                                   Drama|War    0.841392
-1348      1952               5.0                                                                                              Midnight Cowboy (1969)                                       Drama    0.812109
-6257     51255               5.0                                                                                                     Hot Fuzz (2007)                 Action|Comedy|Crime|Mystery    0.775051
-2576      3653               5.0                                                                                          Endless Summer, The (1966)                                 Documentary    0.915062
-2701      3814               5.0                                                                                               Love and Death (1975)                                      Comedy    0.890298
-5460     27156               5.0  Neon Genesis Evangelion: The End of Evangelion (Shin seiki Evangelion Gekijô-ban: Air/Magokoro wo, kimi ni) (1997)       Action|Animation|Drama|Fantasy|Sci-Fi    0.916499
-865       1223               5.0                                                                     Grand Day Out with Wallace and Gromit, A (1989)  Adventure|Animation|Children|Comedy|Sci-Fi    0.823124
-9331    170705               5.0                                                                                             Band of Brothers (2001)                            Action|Drama|War    0.923045
-914       1279               5.0                                                                                               Night on Earth (1991)                                Comedy|Drama    0.901127
-9522    184245               4.9                                                                                             De platte jungle (1978)                                 Documentary    0.944141
-2161      3037               4.9                                                                                               Little Big Man (1970)                                     Western    0.794051
-2278      3201               4.9                                                                                             Five Easy Pieces (1970)                                       Drama    0.852748
-5437     26928               4.9                                                                               Summer's Tale, A (Conte d'été) (1996)                        Comedy|Drama|Romance    0.944141
-4752      7361               4.9                                                                        Eternal Sunshine of the Spotless Mind (2004)                        Drama|Romance|Sci-Fi    0.752704
-8673    132333               4.9                                                                                                         Seve (2014)                           Documentary|Drama    0.901665
-2480      3508               4.9                                                                                      Outlaw Josey Wales, The (1976)     Action|Adventure|Drama|Thriller|Western    0.779333
-3128      4441               4.9                                                                                                Game of Death (1978)                                      Action    0.889848
-7356     84273               4.9                                                                                    Zeitgeist: Moving Forward (2011)                                 Documentary    0.944141
-749       1028               4.9                                                                                                 Mary Poppins (1964)             Children|Comedy|Fantasy|Musical    0.710681
-214        260               4.9                                                                           Star Wars: Episode IV - A New Hope (1977)                     Action|Adventure|Sci-Fi    0.638131
-875       1235               4.9                                                                                             Harold and Maude (1971)                        Comedy|Drama|Romance    0.795674
-456        541               4.9                                                                                                 Blade Runner (1982)                      Action|Sci-Fi|Thriller    0.681551
-845       1192               4.9                                                                                             Paris Is Burning (1990)                                 Documentary    0.931569
-3900      5772               4.9                                                                                         My Dinner with André (1981)                                       Drama    0.907631
-848       1199               4.9                                                                                                       Brazil (1985)                              Fantasy|Sci-Fi    0.729077
-8425    117531               4.9                                                                                                    Watermark (2014)                                 Documentary    0.944141
-7649     92535               4.9                                                                       Louis C.K.: Live at the Beacon Theater (2011)                                      Comedy    0.924946
-1222      1734               4.9                                                                             My Life in Pink (Ma vie en rose) (1997)                                Comedy|Drama    0.907781
-4632      7132               4.9                                                                                        Night at the Opera, A (1935)                      Comedy|Musical|Romance    0.842516
-3106      4406               4.9                                                                            Man Who Shot Liberty Valance, The (1962)                         Crime|Drama|Western    0.917024
-8730    134796               4.9                                                                                                  Bitter Lake (2015)                                 Documentary    0.944141
-3997      5971               4.9                                                                        My Neighbor Totoro (Tonari no Totoro) (1988)            Animation|Children|Drama|Fantasy    0.814057
-668        916               4.9                                                                                                Roman Holiday (1953)                        Comedy|Drama|Romance    0.827336
-2300      3246               4.9                                                                                                    Malcolm X (1992)                                       Drama    0.845935
-673        922               4.9                                                                       Sunset Blvd. (a.k.a. Sunset Boulevard) (1950)                     Drama|Film-Noir|Romance    0.816133
-5288     26073               4.9                                                               Human Condition III, The (Ningen no joken III) (1961)                                   Drama|War    0.944141
-5044      8477               4.9                                                                                                    Jetée, La (1962)                              Romance|Sci-Fi    0.917312
-4590      7071               4.9                                                                                 Woman Under the Influence, A (1974)                                       Drama    0.944141
-916       1281               4.9                                                                                          Great Dictator, The (1940)                            Comedy|Drama|War    0.857850
-247        296               4.9                                                                                                 Pulp Fiction (1994)                 Comedy|Crime|Drama|Thriller    0.674595
-1993      2804               4.9                                                                                           Christmas Story, A (1983)                             Children|Comedy    0.698501
-5072      8542               4.9                                                                                          Day at the Races, A (1937)                              Comedy|Musical    0.853490
-911       1276               4.9                                                                                               Cool Hand Luke (1967)                                       Drama    0.750469
-4242      6460               4.9                                                                                      Trial, The (Procès, Le) (1962)                                       Drama    0.913760
-7084     74226               4.9                                         Dream of Light (a.k.a. Quince Tree Sun, The) (Sol del membrillo, El) (1992)                           Documentary|Drama    0.944141
-2703      3819               4.9                                                                                                      Tampopo (1985)                                      Comedy    0.918015
-904       1267               4.9                                                                                    Manchurian Candidate, The (1962)                          Crime|Thriller|War    0.799346
-5955     43376               4.9                                             Sophie Scholl: The Final Days (Sophie Scholl - Die letzten Tage) (2005)                                   Drama|War    0.894141
-4374      6711               4.8                                                                                          Lost in Translation (2003)                        Comedy|Drama|Romance    0.718168
-1655      2351               4.8                                                                     Nights of Cabiria (Notti di Cabiria, Le) (1957)                                       Drama    0.898412
-5360     26528               4.8                                                                                         Anne of Green Gables (1985)                              Children|Drama    0.912213
-5883     40412               4.8                                                                                             Dead Man's Shoes (2004)                              Crime|Thriller    0.928831
-3485      4993               4.8                                                           Lord of the Rings: The Fellowship of the Ring, The (2001)                           Adventure|Fantasy    0.699683
-846       1193               4.8                                                                              One Flew Over the Cuckoo's Nest (1975)                                       Drama    0.709601
-7645     92475               4.8                                                                 All Watched Over by Machines of Loving Grace (2011)                                 Documentary    0.925162
-2097      2951               4.8                                                              Fistful of Dollars, A (Per un pugno di dollari) (1964)                              Action|Western    0.707779
-3699      5416               4.8                                                                                                      Cherish (2002)                       Comedy|Drama|Thriller    0.827565
-2844      4011               4.8                                                                                                       Snatch (2000)                       Comedy|Crime|Thriller    0.707303
-854       1207               4.8                                                                                        To Kill a Mockingbird (1962)                                       Drama    0.747705
-894       1256               4.8                                                                                                    Duck Soup (1933)                          Comedy|Musical|War    0.725058
-9404    174053               4.8                                                                                Black Mirror: White Christmas (2014)        Drama|Horror|Mystery|Sci-Fi|Thriller    0.938870
-5493     27523               4.8                                                                         My Sassy Girl (Yeopgijeogin geunyeo) (2001)                              Comedy|Romance    0.900804
-5534     27773               4.8                                                                                                      Old Boy (2003)                            Mystery|Thriller    0.793948
-2858      4027               4.8                                                                                   O Brother, Where Art Thou? (2000)                      Adventure|Comedy|Crime    0.688895
-3830      5617               4.8                                                                                                    Secretary (2002)                        Comedy|Drama|Romance    0.784478
-256        306               4.8                                                                    Three Colors: Red (Trois couleurs: Rouge) (1994)                                       Drama    0.854498
-4426      6807               4.8                                                                           Monty Python's The Meaning of Life (1983)                                      Comedy    0.732856
-910       1274               4.8                                                                                                        Akira (1988)           Action|Adventure|Animation|Sci-Fi    0.729556
-2441      3451               4.8                                                                                 Guess Who's Coming to Dinner (1967)                                       Drama    0.856559
-7087     74282               4.8                                                    Anne of Green Gables: The Sequel (a.k.a. Anne of Avonlea) (1987)                      Children|Drama|Romance    0.922670
-856       1210               4.8                                                                   Star Wars: Episode VI - Return of the Jedi (1983)                     Action|Adventure|Sci-Fi    0.612505
-8124    106100               4.8                                                                                           Dallas Buyers Club (2013)                                       Drama    0.882268
-884       1246               4.8                                                                                           Dead Poets Society (1989)                                       Drama    0.720307
-9355    171763               4.8                                                                                                  Baby Driver (2017)                       Action|Crime|Thriller    0.832822
-8300    112552               4.8                                                                                                     Whiplash (2014)                                       Drama    0.856271
-4384      6732               4.8                                                                                                Hello, Dolly! (1969)                      Comedy|Musical|Romance    0.918030
-6020     44889               4.8                                                                            Reefer Madness: The Movie Musical (2005)                        Comedy|Drama|Musical    0.933436
-8210    109487               4.8                                                                                                 Interstellar (2014)                                 Sci-Fi|IMAX    0.835541
-864       1221               4.8                                                                                      Godfather: Part II, The (1974)                                 Crime|Drama    0.674055
-863       1219               4.8                                                                                                       Psycho (1960)                                Crime|Horror    0.687408
-3119      4429               4.8                                                                                                    Moby Dick (1956)                                       Drama    0.915895
-8139    106782               4.8                                                                                     Wolf of Wall Street, The (2013)                          Comedy|Crime|Drama    0.843335
-1637      2329               4.8                                                                                           American History X (1998)                                 Crime|Drama    0.696815
-3087      4380               4.8                                                Princess and the Warrior, The (Krieger und die Kaiserin, Der) (2000)                               Drama|Romance    0.774627
-1166      1653               4.8                                                                                                      Gattaca (1997)                       Drama|Sci-Fi|Thriller    0.679876
+      Movie ID  Predicted Rating                                                                    Recommended Movies                                              Genres  Serendipity  Exposure Fairness
+9452    177593               5.6                                      Three Billboards Outside Ebbing, Missouri (2017)                                         Crime|Drama         0.92              97.89
+6511     57669               5.5                                                                      In Bruges (2008)                         Comedy|Crime|Drama|Thriller         0.82              87.93
+8876    141718               5.5                                                                      Deathgasm (2015)                                       Comedy|Horror         1.00             100.00
+7199     78836               5.4                                                                 Enter the Void (2009)                                               Drama         0.95              99.70
+4879      7842               5.4                                                                           Dune (2000)                                Drama|Fantasy|Sci-Fi         0.91              99.09
+9414    174909               5.4                                                                    Logan Lucky (2017)                                              Comedy         0.99             100.00
+9404    174053               5.4                                                  Black Mirror: White Christmas (2014)                Drama|Horror|Mystery|Sci-Fi|Thriller         0.98              99.09
+6898     69524               5.4                                        Raiders of the Lost Ark: The Adaptation (1989)                           Action|Adventure|Thriller         0.94              99.40
+9549    188751               5.4                                                   Mamma Mia: Here We Go Again! (2018)                                      Comedy|Romance         0.99             100.00
+7649     92535               5.4                                         Louis C.K.: Live at the Beacon Theater (2011)                                              Comedy         0.95              97.28
+9522    184245               5.3                                                               De platte jungle (1978)                                         Documentary         0.97             100.00
+7158     77455               5.3                                                     Exit Through the Gift Shop (2010)                                  Comedy|Documentary         0.86              96.38
+7418     86290               5.3                                                 American: The Bill Hicks Story (2009)                                  Comedy|Documentary         0.96              99.40
+5351     26471               5.3                                                         Eddie Murphy Delirious (1983)                                  Comedy|Documentary         0.95              99.09
+4590      7071               5.3                                                   Woman Under the Influence, A (1974)                                               Drama         0.97             100.00
+2089      2936               5.3                                                             Sullivan's Travels (1941)                            Adventure|Comedy|Romance         0.89              98.19
+4815      7587               5.3                                                     Samouraï, Le (Godson, The) (1967)                                Crime|Drama|Thriller         0.92              99.09
+5751     33779               5.3                                                    Eddie Izzard: Dress to Kill (1999)                                              Comedy         0.97              99.70
+910       1274               5.3                                                                          Akira (1988)                   Action|Adventure|Animation|Sci-Fi         0.76              88.53
+5288     26073               5.3                                 Human Condition III, The (Ningen no joken III) (1961)                                           Drama|War         0.97             100.00
+8905    142488               5.3                                                                      Spotlight (2015)                                            Thriller         0.87              94.57
+1663      2360               5.3                                                      Celebration, The (Festen) (1998)                                               Drama         0.91              96.68
+5437     26928               5.3                                                 Summer's Tale, A (Conte d'été) (1996)                                Comedy|Drama|Romance         0.97             100.00
+7988    102217               5.3                                                        Bill Hicks: Revelations (1993)                                              Comedy         0.98             100.00
+7538     89904               5.3                                                                     The Artist (2011)                                Comedy|Drama|Romance         0.85              96.98
+8730    134796               5.3                                                                    Bitter Lake (2015)                                         Documentary         0.97             100.00
+7356     84273               5.3                                                      Zeitgeist: Moving Forward (2011)                                         Documentary         0.97             100.00
+7084     74226               5.3           Dream of Light (a.k.a. Quince Tree Sun, The) (Sol del membrillo, El) (1992)                                   Documentary|Drama         0.97             100.00
+2576      3653               5.3                                                            Endless Summer, The (1966)                                         Documentary         0.92              99.40
+3141      4454               5.3                                                                           More (1998)                         Animation|Drama|Sci-Fi|IMAX         0.95             100.00
+266        318               5.3                                                      Shawshank Redemption, The (1994)                                         Crime|Drama         0.74               4.62
+2703      3819               5.3                                                                        Tampopo (1985)                                              Comedy         0.94              99.40
+4058      6104               5.3                                        Monty Python Live at the Hollywood Bowl (1982)                                              Comedy         0.89              97.59
+8425    117531               5.3                                                                      Watermark (2014)                                         Documentary         0.97             100.00
+2367      3347               5.2                                                                 Never Cry Wolf (1983)                                     Adventure|Drama         0.85              97.59
+2467      3494               5.2                                                                      True Grit (1969)                             Adventure|Drama|Western         0.85              98.49
+4350      6666               5.2  Discreet Charm of the Bourgeoisie, The (Charme discret de la bourgeoisie, Le) (1972)                                Comedy|Drama|Fantasy         0.95              98.79
+678        928               5.2                                                                        Rebecca (1940)                      Drama|Mystery|Romance|Thriller         0.84              94.87
+1604      2288               5.2                                                                     Thing, The (1982)                       Action|Horror|Sci-Fi|Thriller         0.78              86.72
+7455     87234               5.2                                                                      Submarine (2010)                                Comedy|Drama|Romance         0.98              99.40
+6483     56782               5.2                                                            There Will Be Blood (2007)                                       Drama|Western         0.86              91.85
+214        260               5.2                                             Star Wars: Episode IV - A New Hope (1977)                             Action|Adventure|Sci-Fi         0.65              24.54
+5955     43376               5.2               Sophie Scholl: The Final Days (Sophie Scholl - Die letzten Tage) (2005)                                           Drama|War         0.91              99.09
+6694     62336               5.2                                                                           FLCL (2000)                     Animation|Comedy|Fantasy|Sci-Fi         0.92              97.59
+2858      4027               5.2                                                     O Brother, Where Art Thou? (2000)                              Adventure|Comedy|Crime         0.72              71.93
+630        861               5.2    Supercop (Police Story 3: Supercop) (Jing cha gu shi III: Chao ji jing cha) (1992)                        Action|Comedy|Crime|Thriller         0.90              97.59
+1977      2788               5.1                      Monty Python's And Now for Something Completely Different (1971)                                              Comedy         0.80              91.85
+2326      3275               5.1                                                           Boondock Saints, The (2000)                         Action|Crime|Drama|Thriller         0.75              87.32
+398        475               5.1                                                      In the Name of the Father (1993)                                               Drama         0.87              92.76
+9331    170705               5.1                                                               Band of Brothers (2001)                                    Action|Drama|War         0.92              98.19
+6632     60684               5.1                                                                       Watchmen (2009)           Action|Drama|Mystery|Sci-Fi|Thriller|IMAX         0.83              87.32
+7315     82242               5.1                                  Rare Exports: A Christmas Tale (Rare Exports) (2010)                                       Action|Comedy         0.94              99.70
+6657     61132               5.1                                                                 Tropic Thunder (2008)                         Action|Adventure|Comedy|War         0.82              90.34
+8734    134853               5.1                                                                     Inside Out (2015)   Adventure|Animation|Children|Comedy|Drama|Fantasy         0.87              87.32
+3760      5500               5.1                                                                    Top Secret! (1984)                                              Comedy         0.83              97.28
+80          97               5.1                                                               Hate (Haine, La) (1995)                                         Crime|Drama         0.89              97.28
+629        858               5.1                                                                 Godfather, The (1972)                                         Crime|Drama         0.70              42.35
+8699    133771               5.1                                                                    The Lobster (2015)                               Comedy|Romance|Sci-Fi         0.90              98.19
+1522      2160               5.1                                                                Rosemary's Baby (1968)                               Drama|Horror|Thriller         0.81              90.64
+647        893               5.1                                                                   Mother Night (1996)                                               Drama         0.93              99.40
+3391      4848               5.1                                                               Mulholland Drive (2001)              Crime|Drama|Film-Noir|Mystery|Thriller         0.79              84.91
+5360     26528               5.1                                                           Anne of Green Gables (1985)                                      Children|Drama         0.95              99.40
+2265      3181               5.1                                                                          Titus (1999)                                               Drama         0.85              98.49
+3119      4429               5.1                                                                      Moby Dick (1956)                                               Drama         0.96              99.70
+8380    115617               5.1                                                                     Big Hero 6 (2014)                             Action|Animation|Comedy         0.87              87.93
+5213      8958               5.1                                                                            Ray (2004)                                               Drama         0.86              94.57
+9418    175303               5.1                                                                             It (2017)                                              Horror         0.96              97.59
+3946      5876               5.1                                                            Quiet American, The (2002)                                  Drama|Thriller|War         0.86              98.79
+7087     74282               5.1                      Anne of Green Gables: The Sequel (a.k.a. Anne of Avonlea) (1987)                              Children|Drama|Romance         0.97              99.70
+856       1210               5.1                                     Star Wars: Episode VI - Return of the Jedi (1983)                             Action|Adventure|Sci-Fi         0.64              41.14
+4242      6460               5.1                                                        Trial, The (Procès, Le) (1962)                                               Drama         0.93              98.79
+1229      1753               5.1                                                                     Half Baked (1998)                                              Comedy         0.82              95.47
+6273     51709               5.1                                                            Host, The (Gwoemul) (2006)                 Comedy|Drama|Horror|Sci-Fi|Thriller         0.84              98.19
+1222      1734               5.1                                               My Life in Pink (Ma vie en rose) (1997)                                        Comedy|Drama         0.93              97.59
+9268    166534               5.1                                                                          Split (2017)                               Drama|Horror|Thriller         0.95              98.49
+4607      7090               5.1                                                              Hero (Ying xiong) (2002)                              Action|Adventure|Drama         0.77              88.83
+7987    102194               5.1                                                                            Mud (2012)                               Adventure|Crime|Drama         0.98              99.40
+4611      7096               5.1                                                               Rivers and Tides (2001)                                         Documentary         1.00             100.00
+9191    161582               5.1                                                             Hell or High Water (2016)                                         Crime|Drama         0.87              97.89
+6295     52435               5.1                                                How the Grinch Stole Christmas! (1966)                    Animation|Comedy|Fantasy|Musical         0.86              96.98
+2597      3681               5.1                            For a Few Dollars More (Per qualche dollaro in più) (1965)                       Action|Drama|Thriller|Western         0.79              90.34
+7839     97304               5.1                                                                           Argo (2012)                                      Drama|Thriller         0.87              91.85
+4643      7153               5.1                                 Lord of the Rings: The Return of the King, The (2003)                      Action|Adventure|Drama|Fantasy         0.75              44.46
+2520      3566               5.0                                                                Big Kahuna, The (2000)                                        Comedy|Drama         0.85              97.89
+2832      3996               5.0                               Crouching Tiger, Hidden Dragon (Wo hu cang long) (2000)                                Action|Drama|Romance         0.74              67.10
+8061    103984               5.0                                        Great Beauty, The (Grande Bellezza, La) (2013)                                        Comedy|Drama         0.98              99.40
+9219    163645               5.0                                                                  Hacksaw Ridge (2016)                                           Drama|War         0.92              97.89
+3900      5772               5.0                                                           My Dinner with André (1981)                                               Drama         0.93              99.70
+6545     58559               5.0                                                               Dark Knight, The (2008)                             Action|Crime|Drama|IMAX         0.79              55.33
+8824    139385               5.0                                                                   The Revenant (2015)                                     Adventure|Drama         0.87              90.95
+6257     51255               5.0                                                                       Hot Fuzz (2007)                         Action|Comedy|Crime|Mystery         0.78              81.89
+2220      3108               5.0                                                               Fisher King, The (1991)                        Comedy|Drama|Fantasy|Romance         0.75              89.44
+4915      7981               5.0                                                Infernal Affairs (Mou gaan dou) (2002)                                Crime|Drama|Thriller         0.85              97.59
+4200      6370               5.0                                   Spanish Apartment, The (L'auberge espagnole) (2002)                                Comedy|Drama|Romance         0.87              98.79
+6874     68954               5.0                                                                             Up (2009)                  Adventure|Animation|Children|Drama         0.82              68.61
+2717      3836               5.0                                                                 Kelly's Heroes (1970)                                   Action|Comedy|War         0.80              95.77
+2796      3951               5.0                                                               Two Family House (2000)                                               Drama         0.87             100.00
+4836      7706               5.0                                                                Animal Crackers (1930)                                      Comedy|Musical         0.91              99.09
+4194      6350               5.0                             Laputa: Castle in the Sky (Tenkû no shiro Rapyuta) (1986)  Action|Adventure|Animation|Children|Fantasy|Sci-Fi         0.86              93.06
+3485      4993               5.0                             Lord of the Rings: The Fellowship of the Ring, The (2001)                                   Adventure|Fantasy         0.73              40.54
+
+
+Serendipity then Fairness
+
+
+
+
+Top 100 recommendations after first reordering
+
+      Movie ID  Predicted Rating                                                                    Recommended Movies                                Genres  Serendipity  Exposure Fairness
+4611      7096               5.1                                                               Rivers and Tides (2001)                           Documentary         1.00             100.00
+8876    141718               5.5                                                                      Deathgasm (2015)                         Comedy|Horror         1.00             100.00
+9445    176601               5.0                                                                          Black Mirror                    (no genres listed)         0.99             100.00
+9414    174909               5.4                                                                    Logan Lucky (2017)                                Comedy         0.99             100.00
+4052      6086               5.0                                                                    I, the Jury (1982)                  Crime|Drama|Thriller         0.99             100.00
+9549    188751               5.4                                                   Mamma Mia: Here We Go Again! (2018)                        Comedy|Romance         0.99             100.00
+8061    103984               5.0                                        Great Beauty, The (Grande Bellezza, La) (2013)                          Comedy|Drama         0.98              99.40
+7988    102217               5.3                                                        Bill Hicks: Revelations (1993)                                Comedy         0.98             100.00
+6020     44889               5.0                                              Reefer Madness: The Movie Musical (2005)                  Comedy|Drama|Musical         0.98              99.70
+7455     87234               5.2                                                                      Submarine (2010)                  Comedy|Drama|Romance         0.98              99.40
+7987    102194               5.1                                                                            Mud (2012)                 Adventure|Crime|Drama         0.98              99.40
+9404    174053               5.4                                                  Black Mirror: White Christmas (2014)  Drama|Horror|Mystery|Sci-Fi|Thriller         0.98              99.09
+9522    184245               5.3                                                               De platte jungle (1978)                           Documentary         0.97             100.00
+7356     84273               5.3                                                      Zeitgeist: Moving Forward (2011)                           Documentary         0.97             100.00
+4590      7071               5.3                                                   Woman Under the Influence, A (1974)                                 Drama         0.97             100.00
+7645     92475               5.0                                   All Watched Over by Machines of Loving Grace (2011)                           Documentary         0.97              99.70
+5751     33779               5.3                                                    Eddie Izzard: Dress to Kill (1999)                                Comedy         0.97              99.70
+7087     74282               5.1                      Anne of Green Gables: The Sequel (a.k.a. Anne of Avonlea) (1987)                Children|Drama|Romance         0.97              99.70
+5288     26073               5.3                                 Human Condition III, The (Ningen no joken III) (1961)                             Drama|War         0.97             100.00
+8425    117531               5.3                                                                      Watermark (2014)                           Documentary         0.97             100.00
+5437     26928               5.3                                                 Summer's Tale, A (Conte d'été) (1996)                  Comedy|Drama|Romance         0.97             100.00
+7084     74226               5.3           Dream of Light (a.k.a. Quince Tree Sun, The) (Sol del membrillo, El) (1992)                     Documentary|Drama         0.97             100.00
+8730    134796               5.3                                                                    Bitter Lake (2015)                           Documentary         0.97             100.00
+4817      7615               4.9                                                                  Desert Hearts (1985)                                 Drama         0.96              97.78
+9418    175303               5.1                                                                             It (2017)                                Horror         0.96              97.59
+3119      4429               5.1                                                                      Moby Dick (1956)                                 Drama         0.96              99.70
+6453     55908               5.0                                                            Man from Earth, The (2007)                          Drama|Sci-Fi         0.96              97.89
+7418     86290               5.3                                                 American: The Bill Hicks Story (2009)                    Comedy|Documentary         0.96              99.40
+5478     27373               4.8                                                                            61* (2001)                                 Drama         0.95              95.56
+4350      6666               5.2  Discreet Charm of the Bourgeoisie, The (Charme discret de la bourgeoisie, Le) (1972)                  Comedy|Drama|Fantasy         0.95              98.79
+5078      8580               4.9                                                                 Into the Woods (1991)      Adventure|Comedy|Fantasy|Musical         0.95              97.78
+7649     92535               5.4                                         Louis C.K.: Live at the Beacon Theater (2011)                                Comedy         0.95              97.28
+5883     40412               4.9                                                               Dead Man's Shoes (2004)                        Crime|Thriller         0.95              97.48
+5351     26471               5.3                                                         Eddie Murphy Delirious (1983)                    Comedy|Documentary         0.95              99.09
+9268    166534               5.1                                                                          Split (2017)                 Drama|Horror|Thriller         0.95              98.49
+3141      4454               5.3                                                                           More (1998)           Animation|Drama|Sci-Fi|IMAX         0.95             100.00
+5360     26528               5.1                                                           Anne of Green Gables (1985)                        Children|Drama         0.95              99.40
+7199     78836               5.4                                                                 Enter the Void (2009)                                 Drama         0.95              99.70
+6616     60293               4.9                                                                  Wackness, The (2008)                  Comedy|Drama|Romance         0.94              97.19
+5694     32657               5.0                 Man Who Planted Trees, The (Homme qui plantait des arbres, L') (1987)                       Animation|Drama         0.94              99.09
+7315     82242               5.1                                  Rare Exports: A Christmas Tale (Rare Exports) (2010)                         Action|Comedy         0.94              99.70
+6898     69524               5.4                                        Raiders of the Lost Ark: The Adaptation (1989)             Action|Adventure|Thriller         0.94              99.40
+2703      3819               5.3                                                                        Tampopo (1985)                                Comedy         0.94              99.40
+6239     50851               4.8                                                                Cocaine Cowboys (2006)                           Documentary         0.94              95.27
+6144     48342               5.0                                                 Conversations with Other Women (2005)                  Comedy|Drama|Romance         0.94              99.70
+4551      7025               4.8                                                              Midnight Clear, A (1992)                             Drama|War         0.94              95.27
+647        893               5.1                                                                   Mother Night (1996)                                 Drama         0.93              99.40
+1497      2131               4.9                                                    Autumn Sonata (Höstsonaten) (1978)                                 Drama         0.93              96.89
+8619    129354               4.9                                                                          Focus (2015)            Comedy|Crime|Drama|Romance         0.93              95.12
+4880      7843               4.8                                                                       Lammbock (2001)                                Comedy         0.93              95.56
+1222      1734               5.1                                               My Life in Pink (Ma vie en rose) (1997)                          Comedy|Drama         0.93              97.59
+4242      6460               5.1                                                        Trial, The (Procès, Le) (1962)                                 Drama         0.93              98.79
+8291    112334               4.8                             Internet's Own Boy: The Story of Aaron Swartz, The (2014)                           Documentary         0.93              95.56
+9489    180777               4.8                                                     Die Frauen von Ravensbrück (2005)                           Documentary         0.93              95.56
+8582    127298               4.8                               A Pigeon Sat on a Branch Reflecting on Existence (2014)                          Comedy|Drama         0.93              95.27
+9345    171011               4.8                                                                Planet Earth II (2016)                           Documentary         0.93              94.40
+9102    157110               4.8                                           00 Schneider - Jagd auf Nihil Baxter (1994)                          Comedy|Crime         0.93              95.56
+9101    157108               4.8                                       Texas - Doc Snyder hält die Welt in Atem (1993)                        Comedy|Western         0.93              95.56
+6956     71108               4.8                                             White Ribbon, The (Das weiße Band) (2009)                         Drama|Mystery         0.93              95.56
+3900      5772               5.0                                                           My Dinner with André (1981)                                 Drama         0.93              99.70
+6748     64197               4.8                                                                         Hunger (2008)                                 Drama         0.93              95.27
+7400     85736               4.8                                                                         BURN-E (2008)   Adventure|Animation|Children|Sci-Fi         0.93              94.98
+8379    115569               5.0                                                                   Nightcrawler (2014)                  Crime|Drama|Thriller         0.92              94.87
+7526     89678               4.7                                                               Northanger Abbey (2007)                         Drama|Romance         0.92              93.33
+6442     55721               5.0                                                   Elite Squad (Tropa de Elite) (2007)           Action|Crime|Drama|Thriller         0.92              97.28
+9452    177593               5.6                                      Three Billboards Outside Ebbing, Missouri (2017)                           Crime|Drama         0.92              97.89
+8842    140162               4.8                                                                           Love (2015)                         Drama|Romance         0.92              95.56
+5287     26059               4.8                 When a Woman Ascends the Stairs (Onna ga kaidan wo agaru toki) (1960)                                 Drama         0.92              95.56
+6777     65225               4.8                                                            Zeitgeist: Addendum (2008)                           Documentary         0.92              95.56
+6348     53883               4.8                     Power of Nightmares, The: The Rise of the Politics of Fear (2004)                           Documentary         0.92              95.56
+9155    159976               4.8                                                        Pelé: Birth of a Legend (2016)                                 Drama         0.92              95.56
+7468     87660               4.8                                                                Too Big to Fail (2011)                                 Drama         0.92              95.56
+8432    117849               4.8                                                                 La Belle Verte (1996)                                Comedy         0.92              95.56
+6597     59814               4.7                                                                     Ex Drummer (2007)             Comedy|Crime|Drama|Horror         0.92              93.33
+3236      4612               4.8                                          Jesus of Montreal (Jésus de Montréal) (1989)                                 Drama         0.92              95.56
+4384      6732               4.8                                                                  Hello, Dolly! (1969)                Comedy|Musical|Romance         0.92              95.27
+9393    173317               4.8                                                                   Shadow World (2016)                           Documentary         0.92              95.56
+7592     91337               4.7                                                                  Play the Game (2009)                        Comedy|Romance         0.92              93.33
+5283     26003               4.8                                             Night and Fog (Nuit et brouillard) (1955)                 Crime|Documentary|War         0.92              95.56
+9483    180095               4.7                                                                         Wonder (2017)                                 Drama         0.92              92.77
+8606    128900               4.8                                                               The Natural Love (1996)                           Documentary         0.92              95.56
+7790     96084               4.8                                      Hands Over the City (Le mani sulla città) (1963)                                 Drama         0.92              95.56
+8932    143896               4.8                                                        How To Change The World (2015)                           Documentary         0.92              95.56
+6394     55020               4.8                                                                       Ten, The (2007)                                Comedy         0.92              95.56
+9031    150696               4.8                                                                       Tomorrow (2015)                           Documentary         0.92              95.56
+6690     62208               4.8             Sound of the Mountain (Thunder of the Mountain, The) (Yama no oto) (1954)                                 Drama         0.92              95.56
+5461     27176               4.8                                                                     Style Wars (1983)                           Documentary         0.92              95.56
+6022     44931               4.8                                    Secrets of a Soul (Geheimnisse einer Seele) (1926)                                 Drama         0.92              95.56
+8861    140816               4.8                                                                      Tangerine (2015)                          Comedy|Drama         0.92              95.56
+5473     27328               4.8                                                                         Monday (2000)  Action|Comedy|Crime|Fantasy|Thriller         0.92              95.56
+8613    128991               4.8                                                                 Johnny Express (2014)               Animation|Comedy|Sci-Fi         0.92              95.56
+9551    188833               4.8                                                 The Man Who Killed Don Quixote (2018)              Adventure|Comedy|Fantasy         0.92              95.56
+9331    170705               5.1                                                               Band of Brothers (2001)                      Action|Drama|War         0.92              98.19
+9219    163645               5.0                                                                  Hacksaw Ridge (2016)                             Drama|War         0.92              97.89
+6694     62336               5.2                                                                           FLCL (2000)       Animation|Comedy|Fantasy|Sci-Fi         0.92              97.59
+4815      7587               5.3                                                     Samouraï, Le (Godson, The) (1967)                  Crime|Drama|Thriller         0.92              99.09
+2576      3653               5.3                                                            Endless Summer, The (1966)                           Documentary         0.92              99.40
+5025      8405               4.8                                                  Hour of the Wolf (Vargtimmen) (1968)                          Drama|Horror         0.91              95.27
+845       1192               4.8                                                               Paris Is Burning (1990)                           Documentary         0.91              94.40
+770       1066               4.9                                                                 Shall We Dance (1937)                Comedy|Musical|Romance         0.91              96.89
+
+
+Top 10 recommendations after second reordering
+
+      Movie ID  Predicted Rating                                                           Recommended Movies                       Genres  Serendipity  Exposure Fairness
+4611      7096               5.1                                                      Rivers and Tides (2001)                  Documentary         1.00              100.0
+9522    184245               5.3                                                      De platte jungle (1978)                  Documentary         0.97              100.0
+8876    141718               5.5                                                             Deathgasm (2015)                Comedy|Horror         1.00              100.0
+8730    134796               5.3                                                           Bitter Lake (2015)                  Documentary         0.97              100.0
+7084     74226               5.3  Dream of Light (a.k.a. Quince Tree Sun, The) (Sol del membrillo, El) (1992)            Documentary|Drama         0.97              100.0
+5437     26928               5.3                                        Summer's Tale, A (Conte d'été) (1996)         Comedy|Drama|Romance         0.97              100.0
+8425    117531               5.3                                                             Watermark (2014)                  Documentary         0.97              100.0
+5288     26073               5.3                        Human Condition III, The (Ningen no joken III) (1961)                    Drama|War         0.97              100.0
+3141      4454               5.3                                                                  More (1998)  Animation|Drama|Sci-Fi|IMAX         0.95              100.0
+7356     84273               5.3                                             Zeitgeist: Moving Forward (2011)                  Documentary         0.97              100.0
+
+
+Fairness then Serendipity
+
+
+
+
+Top 100 recommendations after first reordering
+
+      Movie ID  Predicted Rating                                                                    Recommended Movies                                Genres  Serendipity  Exposure Fairness
+3141      4454               5.3                                                                           More (1998)           Animation|Drama|Sci-Fi|IMAX         0.95             100.00
+4590      7071               5.3                                                   Woman Under the Influence, A (1974)                                 Drama         0.97             100.00
+9445    176601               5.0                                                                          Black Mirror                    (no genres listed)         0.99             100.00
+4611      7096               5.1                                                               Rivers and Tides (2001)                           Documentary         1.00             100.00
+7084     74226               5.3           Dream of Light (a.k.a. Quince Tree Sun, The) (Sol del membrillo, El) (1992)                     Documentary|Drama         0.97             100.00
+7356     84273               5.3                                                      Zeitgeist: Moving Forward (2011)                           Documentary         0.97             100.00
+8730    134796               5.3                                                                    Bitter Lake (2015)                           Documentary         0.97             100.00
+7988    102217               5.3                                                        Bill Hicks: Revelations (1993)                                Comedy         0.98             100.00
+5437     26928               5.3                                                 Summer's Tale, A (Conte d'été) (1996)                  Comedy|Drama|Romance         0.97             100.00
+3654      5328               5.0                                                                           Rain (2001)                         Drama|Romance         0.87             100.00
+5288     26073               5.3                                 Human Condition III, The (Ningen no joken III) (1961)                             Drama|War         0.97             100.00
+4052      6086               5.0                                                                    I, the Jury (1982)                  Crime|Drama|Thriller         0.99             100.00
+2386      3379               5.0                                                                   On the Beach (1959)                                 Drama         0.91             100.00
+8425    117531               5.3                                                                      Watermark (2014)                           Documentary         0.97             100.00
+8876    141718               5.5                                                                      Deathgasm (2015)                         Comedy|Horror         1.00             100.00
+2796      3951               5.0                                                               Two Family House (2000)                                 Drama         0.87             100.00
+9522    184245               5.3                                                               De platte jungle (1978)                           Documentary         0.97             100.00
+3699      5416               5.0                                                                        Cherish (2002)                 Comedy|Drama|Thriller         0.87             100.00
+9549    188751               5.4                                                   Mamma Mia: Here We Go Again! (2018)                        Comedy|Romance         0.99             100.00
+9414    174909               5.4                                                                    Logan Lucky (2017)                                Comedy         0.99             100.00
+7645     92475               5.0                                   All Watched Over by Machines of Loving Grace (2011)                           Documentary         0.97              99.70
+6020     44889               5.0                                              Reefer Madness: The Movie Musical (2005)                  Comedy|Drama|Musical         0.98              99.70
+7199     78836               5.4                                                                 Enter the Void (2009)                                 Drama         0.95              99.70
+6144     48342               5.0                                                 Conversations with Other Women (2005)                  Comedy|Drama|Romance         0.94              99.70
+3900      5772               5.0                                                           My Dinner with André (1981)                                 Drama         0.93              99.70
+3119      4429               5.1                                                                      Moby Dick (1956)                                 Drama         0.96              99.70
+4236      6442               5.0                                                                   Belle époque (1992)                        Comedy|Romance         0.87              99.70
+7315     82242               5.1                                  Rare Exports: A Christmas Tale (Rare Exports) (2010)                         Action|Comedy         0.94              99.70
+7087     74282               5.1                      Anne of Green Gables: The Sequel (a.k.a. Anne of Avonlea) (1987)                Children|Drama|Romance         0.97              99.70
+5751     33779               5.3                                                    Eddie Izzard: Dress to Kill (1999)                                Comedy         0.97              99.70
+5360     26528               5.1                                                           Anne of Green Gables (1985)                        Children|Drama         0.95              99.40
+3128      4441               5.0                                                                  Game of Death (1978)                                Action         0.91              99.40
+7987    102194               5.1                                                                            Mud (2012)                 Adventure|Crime|Drama         0.98              99.40
+7455     87234               5.2                                                                      Submarine (2010)                  Comedy|Drama|Romance         0.98              99.40
+647        893               5.1                                                                   Mother Night (1996)                                 Drama         0.93              99.40
+6898     69524               5.4                                        Raiders of the Lost Ark: The Adaptation (1989)             Action|Adventure|Thriller         0.94              99.40
+7418     86290               5.3                                                 American: The Bill Hicks Story (2009)                    Comedy|Documentary         0.96              99.40
+2703      3819               5.3                                                                        Tampopo (1985)                                Comedy         0.94              99.40
+8061    103984               5.0                                        Great Beauty, The (Grande Bellezza, La) (2013)                          Comedy|Drama         0.98              99.40
+2576      3653               5.3                                                            Endless Summer, The (1966)                           Documentary         0.92              99.40
+9404    174053               5.4                                                  Black Mirror: White Christmas (2014)  Drama|Horror|Mystery|Sci-Fi|Thriller         0.98              99.09
+5351     26471               5.3                                                         Eddie Murphy Delirious (1983)                    Comedy|Documentary         0.95              99.09
+4815      7587               5.3                                                     Samouraï, Le (Godson, The) (1967)                  Crime|Drama|Thriller         0.92              99.09
+4836      7706               5.0                                                                Animal Crackers (1930)                        Comedy|Musical         0.91              99.09
+5955     43376               5.2               Sophie Scholl: The Final Days (Sophie Scholl - Die letzten Tage) (2005)                             Drama|War         0.91              99.09
+5694     32657               5.0                 Man Who Planted Trees, The (Homme qui plantait des arbres, L') (1987)                       Animation|Drama         0.94              99.09
+4879      7842               5.4                                                                           Dune (2000)                  Drama|Fantasy|Sci-Fi         0.91              99.09
+4375      6713               5.0                                               Millennium Actress (Sennen joyû) (2001)               Animation|Drama|Romance         0.85              98.79
+4350      6666               5.2  Discreet Charm of the Bourgeoisie, The (Charme discret de la bourgeoisie, Le) (1972)                  Comedy|Drama|Fantasy         0.95              98.79
+4242      6460               5.1                                                        Trial, The (Procès, Le) (1962)                                 Drama         0.93              98.79
+3946      5876               5.1                                                            Quiet American, The (2002)                    Drama|Thriller|War         0.86              98.79
+4200      6370               5.0                                   Spanish Apartment, The (L'auberge espagnole) (2002)                  Comedy|Drama|Romance         0.87              98.79
+2265      3181               5.1                                                                          Titus (1999)                                 Drama         0.85              98.49
+2467      3494               5.2                                                                      True Grit (1969)               Adventure|Drama|Western         0.85              98.49
+9268    166534               5.1                                                                          Split (2017)                 Drama|Horror|Thriller         0.95              98.49
+4685      7234               5.0                                                                     Strada, La (1954)                                 Drama         0.90              98.49
+4974      8207               5.0                                                         Day of the Jackal, The (1973)                        Crime|Thriller         0.91              98.49
+6273     51709               5.1                                                            Host, The (Gwoemul) (2006)   Comedy|Drama|Horror|Sci-Fi|Thriller         0.84              98.19
+9331    170705               5.1                                                               Band of Brothers (2001)                      Action|Drama|War         0.92              98.19
+8699    133771               5.1                                                                    The Lobster (2015)                 Comedy|Romance|Sci-Fi         0.90              98.19
+2089      2936               5.3                                                             Sullivan's Travels (1941)              Adventure|Comedy|Romance         0.89              98.19
+9191    161582               5.1                                                             Hell or High Water (2016)                           Crime|Drama         0.87              97.89
+6453     55908               5.0                                                            Man from Earth, The (2007)                          Drama|Sci-Fi         0.96              97.89
+9219    163645               5.0                                                                  Hacksaw Ridge (2016)                             Drama|War         0.92              97.89
+2520      3566               5.0                                                                Big Kahuna, The (2000)                          Comedy|Drama         0.85              97.89
+9452    177593               5.6                                      Three Billboards Outside Ebbing, Missouri (2017)                           Crime|Drama         0.92              97.89
+4817      7615               4.9                                                                  Desert Hearts (1985)                                 Drama         0.96              97.78
+3167      4495               4.9                                                              Crossing Delancey (1988)                        Comedy|Romance         0.90              97.78
+5078      8580               4.9                                                                 Into the Woods (1991)      Adventure|Comedy|Fantasy|Musical         0.95              97.78
+9418    175303               5.1                                                                             It (2017)                                Horror         0.96              97.59
+6694     62336               5.2                                                                           FLCL (2000)       Animation|Comedy|Fantasy|Sci-Fi         0.92              97.59
+4952      8132               5.0                                                                      Gladiator (1992)                          Action|Drama         0.91              97.59
+4915      7981               5.0                                                Infernal Affairs (Mou gaan dou) (2002)                  Crime|Drama|Thriller         0.85              97.59
+4058      6104               5.3                                        Monty Python Live at the Hollywood Bowl (1982)                                Comedy         0.89              97.59
+2367      3347               5.2                                                                 Never Cry Wolf (1983)                       Adventure|Drama         0.85              97.59
+1222      1734               5.1                                               My Life in Pink (Ma vie en rose) (1997)                          Comedy|Drama         0.93              97.59
+630        861               5.2    Supercop (Police Story 3: Supercop) (Jing cha gu shi III: Chao ji jing cha) (1992)          Action|Comedy|Crime|Thriller         0.90              97.59
+1610      2295               4.9                                                                 Impostors, The (1998)                                Comedy         0.87              97.48
+3253      4634               4.9                                                       Penn & Teller Get Killed (1989)                      Adventure|Comedy         0.90              97.48
+5883     40412               4.9                                                               Dead Man's Shoes (2004)                        Crime|Thriller         0.95              97.48
+7649     92535               5.4                                         Louis C.K.: Live at the Beacon Theater (2011)                                Comedy         0.95              97.28
+80          97               5.1                                                               Hate (Haine, La) (1995)                           Crime|Drama         0.89              97.28
+3760      5500               5.1                                                                    Top Secret! (1984)                                Comedy         0.83              97.28
+6442     55721               5.0                                                   Elite Squad (Tropa de Elite) (2007)           Action|Crime|Drama|Thriller         0.92              97.28
+3532      5075               4.9                                                                    Waydowntown (2000)                                Comedy         0.86              97.19
+6616     60293               4.9                                                                  Wackness, The (2008)                  Comedy|Drama|Romance         0.94              97.19
+7538     89904               5.3                                                                     The Artist (2011)                  Comedy|Drama|Romance         0.85              96.98
+6295     52435               5.1                                                How the Grinch Stole Christmas! (1966)      Animation|Comedy|Fantasy|Musical         0.86              96.98
+7555     90430               4.9                                                                        Carnage (2011)                          Comedy|Drama         0.91              96.89
+770       1066               4.9                                                                 Shall We Dance (1937)                Comedy|Musical|Romance         0.91              96.89
+1497      2131               4.9                                                    Autumn Sonata (Höstsonaten) (1978)                                 Drama         0.93              96.89
+2546      3606               4.9                                                                    On the Town (1949)                Comedy|Musical|Romance         0.85              96.89
+1663      2360               5.3                                                      Celebration, The (Festen) (1998)                                 Drama         0.91              96.68
+4417      6791               4.9                                            Babette's Feast (Babettes gæstebud) (1987)                                 Drama         0.87              96.60
+2285      3213               5.0                                                   Batman: Mask of the Phantasm (1993)                    Animation|Children         0.83              96.38
+7158     77455               5.3                                                     Exit Through the Gift Shop (2010)                    Comedy|Documentary         0.86              96.38
+9203    162578               4.9                                                       Kubo and the Two Strings (2016)  Adventure|Animation|Children|Fantasy         0.90              96.30
+6460     56145               5.0                                                                      Mist, The (2007)                         Horror|Sci-Fi         0.86              96.08
+2020      2846               4.9                           Adventures of Milo and Otis, The (Koneko monogatari) (1986)       Adventure|Children|Comedy|Drama         0.81              96.01
+7098     74545               4.9                                                              Ghost Writer, The (2010)                Drama|Mystery|Thriller         0.90              96.01
+
+
+Top 10 recommendations after second reordering
+
+      Movie ID  Predicted Rating                              Recommended Movies                                Genres  Serendipity  Exposure Fairness
+4611      7096               5.1                         Rivers and Tides (2001)                           Documentary         1.00             100.00
+8876    141718               5.5                                Deathgasm (2015)                         Comedy|Horror         1.00             100.00
+4052      6086               5.0                              I, the Jury (1982)                  Crime|Drama|Thriller         0.99             100.00
+9445    176601               5.0                                    Black Mirror                    (no genres listed)         0.99             100.00
+9414    174909               5.4                              Logan Lucky (2017)                                Comedy         0.99             100.00
+9549    188751               5.4             Mamma Mia: Here We Go Again! (2018)                        Comedy|Romance         0.99             100.00
+7455     87234               5.2                                Submarine (2010)                  Comedy|Drama|Romance         0.98              99.40
+6020     44889               5.0        Reefer Madness: The Movie Musical (2005)                  Comedy|Drama|Musical         0.98              99.70
+8061    103984               5.0  Great Beauty, The (Grande Bellezza, La) (2013)                          Comedy|Drama         0.98              99.40
+9404    174053               5.4            Black Mirror: White Christmas (2014)  Drama|Horror|Mystery|Sci-Fi|Thriller         0.98              99.09
