@@ -27,11 +27,13 @@ def compute_rmse(test_data, U, V):
 
 def rmse(I, R, U, V):
     prediction = ALS_Recommendation.predict(U, V)
+    prediction = np.clip(prediction, 0.5, 5.0)
     error = I * (R - prediction)
     return np.sqrt(np.sum(error**2) / np.count_nonzero(R))
 
 def mse(I, R, U, V):
     prediction = ALS_Recommendation.predict(U, V)
+    prediction = np.clip(prediction, 0.5, 5.0)
     error = I * (R - prediction)
     return np.sum(error**2) / np.count_nonzero(R)
 

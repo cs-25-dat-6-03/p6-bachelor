@@ -25,7 +25,7 @@ def user_stratified_split(ratings, test_size=0.2, val_size=0.2, seed=42):
     test_rows = []
 
     for user_id, user_ratings in ratings.groupby("userId"):
-        if len(user_ratings) >= 5: # Users with fewer than 5 ratings go in training (else-statement)
+        if len(user_ratings) >= 5: # Users with fewer than 5 ratings go in training
             user_train_val, user_test = train_test_split(user_ratings, test_size=test_size, random_state=seed)
             user_train, user_val = train_test_split(user_train_val, test_size=val_size, random_state=seed)
         else:
@@ -41,8 +41,6 @@ def user_stratified_split(ratings, test_size=0.2, val_size=0.2, seed=42):
     return train_data, val_data, test_data
 
 train_data, val_data, test_data = user_stratified_split(ratings)
-print(train_data)
-exit(1)
 
 # Create training and test matrix
 R = np.zeros((n_users, n_items))
@@ -97,10 +95,10 @@ rank, reg, num_iter = (90, 0.1, 50)
 #U, V = ALS_Training.als(R, T, num_users, num_items, I2, num_iter, rank, reg)
 U, V = ALS_Training.als2(R, T, I, I2, reg, rank, num_iter, num_users, num_items)
 predicted_R = ALS_Recommendation.predict(U, V)
-#predicted_R = np.clip(predicted_R, 0.50, 5.0)
+#predicted_R = np.clip(predicted_R, 0.5, 5.0)
 print(f"\n{np.round(predicted_R, 2)}")
 print(predicted_R.shape)
-#exit(1)
+exit(1)
 ALS_Recommendation.save_features(U,V)
 
 # Recommend
