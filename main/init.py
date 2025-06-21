@@ -11,12 +11,12 @@ filepath = "dataset/"
 movies = pd.read_csv(filepath + "movies.csv")
 ratings = pd.read_csv(filepath + "ratings.csv")
 
-n_users = ratings.userId.unique().shape[0]
-n_items = ratings.movieId.unique().shape[0]
+n_users = ratings.userId.unique().shape[0] # 610
+n_items = ratings.movieId.unique().shape[0] # 9724
 
 # Create mappings from IDs to indices
-movie_id_to_index = {mid: idx for idx, mid in enumerate(sorted(ratings.movieId.unique()))}
-user_id_to_index = {uid: idx for idx, uid in enumerate(sorted(ratings.userId.unique()))}
+movie_id_to_index = {mid: idx for idx, mid in enumerate(sorted(ratings.movieId.unique()))} # mid = movieId, idx = index/counter for each movie
+user_id_to_index = {uid: idx for idx, uid in enumerate(sorted(ratings.userId.unique()))} # uid = userId, idx = index/counter for each user
 
 # Per-user splitting 
 def user_split(ratings, test_size=0.2, val_size=0.2, seed=42):
@@ -25,11 +25,12 @@ def user_split(ratings, test_size=0.2, val_size=0.2, seed=42):
     test_rows = []
 
     for user_id, user_ratings in ratings.groupby("userId"):
-        if len(user_ratings) >= 5: # Users with fewer than 5 ratings go in training
-            user_train_val, user_test = train_test_split(user_ratings, test_size=test_size, random_state=seed)
-            user_train, user_val = train_test_split(user_train_val, test_size=val_size, random_state=seed)
-        else:
-            user_train, user_val, user_test = user_ratings, [], []
+        if len(user_ratings) >= 5: 
+            user_train_val, user_test = train_test_split(user_ratings, test_size=test_size, random_state=seed) # total 100837, validation 80669, test 20168
+            user_train, user_val = train_test_split(user_train_val, test_size=val_size, random_state=seed) # total 80669, training 64535, validation 16134
+        else: 
+            # Users with fewer than 5 ratings go in training and doesnt get split
+            user_train, user_val, user_test = user_ratings, [], [] 
 
         train_rows.append(user_train)
         val_rows.append(user_val)
@@ -69,14 +70,14 @@ num_users, num_items = R.shape
 print(R.shape, "\n")
 
 # User prompts (for cold start problem)
-prompt_user_result = ALS_Cold_Start.prompt_user(filepath, movies, ratings)
-print(prompt_user_result)
+#prompt_user_result = ALS_Cold_Start.prompt_user(filepath, movies, ratings)
+#print(prompt_user_result)
 
 # Hyperparameter
-rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I, I3)
+#rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_grid(R, V, num_users, num_items, I, I3)
 #rank, reg, num_iter = ALS_Hyperparameter.hyperparameter_tuning_random(R_train, test_data, num_users, num_items)
-#rank, reg, num_iter = (100, 0.1, 50)
-#print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
+rank, reg, num_iter = (100, 0.1, 50)
+print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
 #U, V = ALS_Training.als(R, T, num_users, num_items, I2, num_iter, rank, reg)

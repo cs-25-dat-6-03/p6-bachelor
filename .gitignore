@@ -55,6 +55,7 @@ dataset/item_matrix.txt
 dataset/user_matrix.txt
 dataset/outputHyperparameter.txt
 dataset/outputALS.txt
+dataset/big_data
 playground.py
 #dataset/movies.csv
 #dataset/ratings.csv
