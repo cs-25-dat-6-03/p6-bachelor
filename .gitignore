@@ -46,6 +46,9 @@ env.bak/
 venv.bak/
 tempCodeRunnerFile.py
 
+# Python
+main/ALS/__pycache__
+
 
 # Dataset
 dataset/matrix.txt
@@ -55,7 +58,7 @@ dataset/item_matrix.txt
 dataset/user_matrix.txt
 dataset/outputHyperparameter.txt
 dataset/outputALS.txt
-dataset/big_data
 playground.py
+dataset/big_data
 #dataset/movies.csv
 #dataset/ratings.csv
