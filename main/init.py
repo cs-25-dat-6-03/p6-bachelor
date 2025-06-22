@@ -7,7 +7,7 @@ from scipy.sparse import csr_matrix
 from ALS import ALS_Cold_Start, ALS_Training, ALS_Recommendation, ALS_Hyperparameter, ALS_Evaluation
 
 # File handling
-filepath = "dataset/" 
+filepath = "dataset/big_data/" 
 movies = pd.read_csv(filepath + "movies.csv")
 ratings = pd.read_csv(filepath + "ratings.csv")
 
