@@ -32,6 +32,14 @@ def rmse(I, R, U, V):
     mse = (error.power(2)).sum() / I.sum()
     return np.sqrt(mse)
 
+def rmse_big(I, R, U, V):
+    rows, cols = R.nonzero()
+    preds = np.sum(U[rows] * V[cols], axis=1)
+    actuals = R[rows, cols].A1  # .A1 flattens to 1D array
+    error = actuals - preds
+    mse = np.mean(error ** 2)
+    return np.sqrt(mse)
+
 def mse(I, R, U, V):
     prediction = ALS_Recommendation.predict(U, V)
     prediction = np.clip(prediction, 0.5, 5.0)

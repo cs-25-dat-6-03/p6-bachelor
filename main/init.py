@@ -7,7 +7,7 @@ from scipy.sparse import csr_matrix
 from ALS import ALS_Cold_Start, ALS_Training, ALS_Recommendation, ALS_Hyperparameter, ALS_Evaluation
 
 # File handling
-filepath = "dataset/big_data/" 
+filepath = "dataset/" 
 movies = pd.read_csv(filepath + "movies.csv")
 ratings = pd.read_csv(filepath + "ratings.csv")
 
@@ -36,7 +36,8 @@ def user_split(ratings, test_size=0.2, val_size=0.2, seed=42):
         val_rows.append(user_val)
         test_rows.append(user_test)
 
-    train_data = pd.concat(train_rows).reset_index(drop=True)
+    # Combines the rows into a dataset
+    train_data = pd.concat(train_rows).reset_index(drop=True) 
     val_data = pd.concat(val_rows).reset_index(drop=True)
     test_data = pd.concat(test_rows).reset_index(drop=True)
     return train_data, val_data, test_data
@@ -82,6 +83,7 @@ print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 # Predict
 #U, V = ALS_Training.als(R, T, num_users, num_items, I2, num_iter, rank, reg)
 U, V = ALS_Training.als(R, T, I, I2, reg, rank, num_iter, num_users, num_items)
+exit(1)
 predicted_R = ALS_Recommendation.predict(U, V)
 #predicted_R = np.clip(predicted_R, 0.5, 5.0)
 print(f"\n{np.round(predicted_R, 2)}")
