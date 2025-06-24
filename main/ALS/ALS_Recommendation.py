@@ -32,13 +32,13 @@ def recommend_movies(user_id, R, T, predicted_R, output, output_file, filepath, 
     user_index = pivot_table.index.get_loc(user_id)
 
     # Recommend Movies that user has not watched
-    user_ratings_dense = R[user_index, :].toarray().ravel()
-    rated_items = user_ratings_dense <= 0 #Select columns and returns true if user has not rated that movie
-    unrated_movie_indices = np.where(rated_items)[0]
-    unrated_movie_ratings = predicted_R[user_index, unrated_movie_indices]
-    unrated_movie_ids = pivot_table.columns[unrated_movie_indices]
-    unrated_movie_titles = movies.set_index('movieId').loc[unrated_movie_ids]['title']
-    unrated_movie_genres = movies.set_index('movieId').loc[unrated_movie_ids]['genres']
+    user_ratings_dense = R[user_index, :].toarray().ravel()                                                 # get row of user_index from R
+    unrated_items = user_ratings_dense <= 0                                                                 # Select items and returns true if user has not rated that movie
+    unrated_movie_indices = np.where(unrated_items)[0]                                                      # Index of unrated movies
+    unrated_movie_ratings = predicted_R[user_index, unrated_movie_indices]                                  # Get predicted ratings of unrated movies from user 
+    unrated_movie_ids = pivot_table.columns[unrated_movie_indices]                                          # ids of unrated movies
+    unrated_movie_titles = movies.set_index('movieId').loc[unrated_movie_ids]['title']                      # Select unrated movie titles based on unrated_movie_ids and not index
+    unrated_movie_genres = movies.set_index('movieId').loc[unrated_movie_ids]['genres']                     # Select unrated movie genres based on unrated_movie_ids and not index
 
     unrated_movies_df = pd.DataFrame({
         'Movie ID': unrated_movie_ids.values,
@@ -47,13 +47,11 @@ def recommend_movies(user_id, R, T, predicted_R, output, output_file, filepath, 
         'Genres': unrated_movie_genres.values
     })
     unrated_movies_df = unrated_movies_df.sort_values(by='Predicted Rating', ascending=False)
-    #unrated_movies_df = unrated_movies_df.head(10)
     
     # Serendipty
     user_rated_movies = ratings[ratings['userId'] == user_id]
     Historical = user_rated_movies[['movieId']]
 
-    #unrated_movies_df.head(100)['Movie ID'].values
     I = unrated_movies_df[['Movie ID', 'Predicted Rating']].values
     H = Historical.values
     
@@ -64,9 +62,10 @@ def recommend_movies(user_id, R, T, predicted_R, output, output_file, filepath, 
         serendipity.append(result)
         
         #Fairness 
-        nonzero_ratings = pivot_table[i][pivot_table[i] > 0]
-        i_exposure = nonzero_ratings.shape[0]
+        nonzero_ratings = pivot_table[i][pivot_table[i] > 0]                                                # Non zero ratings of movie i
+        i_exposure = nonzero_ratings.shape[0]                                                               # How many has rated movie i
 
+        # Number of ratings of each movie ids
         nonzero_counts = (pivot_table > 0).sum(axis=0)
         highest = nonzero_counts.max()
         lowest = nonzero_counts.min()
@@ -76,26 +75,12 @@ def recommend_movies(user_id, R, T, predicted_R, output, output_file, filepath, 
     unrated_movies_df['Serendipity'] = np.round(serendipity,2)
     unrated_movies_df['Exposure Fairness'] = np.round(fairness,2)
 
-    # Test data
-    # test_movie_indices = T[user_index, :].nonzero()[1]  # Get nonzero column indices for this user in T (movies in test set)
-    # test_movie_ids = pivot_table.columns[test_movie_indices]  # Map indices to movie IDs
-    # test_ratings = T[user_index, test_movie_indices].toarray().ravel() # Get the ratings from T for these indices
-
-    # # Filter recommendations for those in the test set
-    # mask = unrated_movies_df['Movie ID'].isin(test_movie_ids)
-    # unrated_movies_df = unrated_movies_df[mask]
-
     if output:
         write_to_file(user_id, output_file, unrated_movies_df, predicted_R, filepath, ratings, movies)
 
     return unrated_movies_df.head(100)
     
 def reordering(Ranking_list, Reordering1, Reordering2):
-
-    #unrated_movies_df = unrated_movies_df.sort_values(
-    #by=['Serendipty'],
-    #ascending=[False])
-
     Ranking_list1 = Ranking_list.sort_values(
     by=[Reordering1],
     ascending=[False])

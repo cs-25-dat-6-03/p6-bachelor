@@ -91,10 +91,8 @@ print(f"\n{np.round(predicted_R, 2)}")
 #print(f"\n{np.round(U @ V.T, 2)}")
 print(predicted_R.shape)
 ALS_Recommendation.save_features(U,V)
-exit(1)
 
 # Recommend
-
 output = True
 output_file = "output.txt"
 result = ALS_Recommendation.recommend_movies(user_id, R, T, predicted_R, output, output_file, filepath, ratings, movies)
