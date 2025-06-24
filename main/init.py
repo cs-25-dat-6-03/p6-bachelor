@@ -44,27 +44,28 @@ def user_split(ratings, test_size=0.2, val_size=0.2, seed=42):
 
 train_data, val_data, test_data = user_split(ratings)
 
-# Create training and test matrix
+# Create training and test matrices
 def df_to_sparse_matrix(df, n_users, n_items, user_id_to_index, movie_id_to_index):
     row_inds = df['userId'].map(user_id_to_index)
     col_inds = df['movieId'].map(movie_id_to_index)
     data = df['rating']
     return csr_matrix((data, (row_inds, col_inds)), shape=(n_users, n_items))
 
-# Sparse rating matrices
+# Create Sparse rating matrices (It stores the positions of the nonzero values)
 R = df_to_sparse_matrix(train_data, n_users, n_items, user_id_to_index, movie_id_to_index)
 T = df_to_sparse_matrix(test_data, n_users, n_items, user_id_to_index, movie_id_to_index)
 V = df_to_sparse_matrix(val_data, n_users, n_items, user_id_to_index, movie_id_to_index)
 
-# Binary index matrices (sparse masks)
+# index matrices (used for eval and mask)
 I = R.copy()
-I.data = np.ones_like(I.data)
+I.data = np.ones_like(I.data) # Replaces known values with "1"
 
 I2 = T.copy()
 I2.data = np.ones_like(I2.data)
 
 I3 = V.copy()
 I3.data = np.ones_like(I3.data)
+
 # Print original matrix
 num_users, num_items = R.shape
 #print(R)
@@ -81,18 +82,19 @@ rank, reg, num_iter = (100, 0.1, 50)
 print(f"Rank = {rank}, Reg = {reg}, Num_iter = {num_iter}")
 
 # Predict
+user_id = 1
 #U, V = ALS_Training.als(R, T, num_users, num_items, I2, num_iter, rank, reg)
 U, V = ALS_Training.als(R, T, I, I2, reg, rank, num_iter, num_users, num_items)
-exit(1)
-predicted_R = ALS_Recommendation.predict(U, V)
+predicted_R = ALS_Recommendation.predict(U, V, user_id_to_index[user_id])
 #predicted_R = np.clip(predicted_R, 0.5, 5.0)
 print(f"\n{np.round(predicted_R, 2)}")
+#print(f"\n{np.round(U @ V.T, 2)}")
 print(predicted_R.shape)
-#exit(1)
 ALS_Recommendation.save_features(U,V)
+exit(1)
 
 # Recommend
-user_id = 1
+
 output = True
 output_file = "output.txt"
 result = ALS_Recommendation.recommend_movies(user_id, R, T, predicted_R, output, output_file, filepath, ratings, movies)

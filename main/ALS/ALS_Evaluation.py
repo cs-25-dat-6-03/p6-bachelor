@@ -1,50 +1,29 @@
 import numpy as np
 from ALS import ALS_Recommendation
 
-# def compute_rmse(R, U, V):
-#     prediction = ALS_Recommendation.predict(U, V)
-#     non_zero = R > 0
-#     error = R[non_zero] - prediction[non_zero]
-#     return np.sqrt(np.mean(error ** 2))
-
-# def compute_rmse(test_data):
-#     se = 0  # sum of squared errors
-#     for u, i, actual in test_data:
-#         pred = predict(u, i)
-#         se += (actual - pred) ** 2
-#     mse = se / len(test_data)
-#     return np.sqrt(mse)
-
-# def compute_rmse(test_data, U, V):
-#     se = 0  # sum of squared errors
-#     prediction = ALS_Recommendation.predict(U, V)
-#     for u, i, actual in test_data:
-#         #pred = prediction[u,i]
-#         #pred = min(5.0, max(0.5, pred))
-#         se += (actual - prediction[u,i]) ** 2
-#     mse = se / len(test_data)
-#     return np.sqrt(mse)
-
-def rmse(I, R, U, V):
-    prediction = ALS_Recommendation.predict(U, V)
+def rmse_b(I, R, U, V, user_index):
+    prediction = ALS_Recommendation.predict(U, V, user_index)
     prediction = np.clip(prediction, 0.5, 5.0)
     error = I.multiply(R - prediction)  # Use .multiply for sparse elementwise
     mse = (error.power(2)).sum() / I.sum()
     return np.sqrt(mse)
 
-def rmse_big(I, R, U, V):
+def rmse(I, R, U, V):
+    rows, cols = R.nonzero()
+    prediction = np.sum(U[rows] * V[cols], axis=1)
+    prediction = np.clip(prediction, 0.5, 5.0)
+    error = R[rows, cols].A1 - prediction
+    mse = np.mean(error ** 2)
+    return np.sqrt(mse)
+
+def rmse_a(I, R, U, V):
     rows, cols = R.nonzero()
     preds = np.sum(U[rows] * V[cols], axis=1)
+    preds = np.clip(preds, 0.5, 5.0)
     actuals = R[rows, cols].A1  # .A1 flattens to 1D array
     error = actuals - preds
     mse = np.mean(error ** 2)
     return np.sqrt(mse)
-
-def mse(I, R, U, V):
-    prediction = ALS_Recommendation.predict(U, V)
-    prediction = np.clip(prediction, 0.5, 5.0)
-    error = I * (R - prediction)
-    return np.sum(error**2) / np.count_nonzero(R)
 
 def unexpectedness(i, H, pivot_table):
     sum = 0

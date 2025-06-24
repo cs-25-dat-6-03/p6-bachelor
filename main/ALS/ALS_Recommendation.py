@@ -111,5 +111,5 @@ def save_features(U, V):
     np.savetxt(filepath + "user_matrix.txt", np.round(U, 2), fmt="%.2f", delimiter=",")
     np.savetxt(filepath + "item_matrix.txt", np.round(V, 2), fmt="%.2f", delimiter=",")
 
-def predict(U, V):
+def predict(U, V, user_index):
     return U @ V.T
