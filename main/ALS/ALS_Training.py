@@ -32,7 +32,7 @@ def update_V(R, U, V, I, lamb, num_features):
 
         V[j, :] = np.linalg.solve(Aj, Vj)                                                               # Instead of inverse of matrix (^-1), we use Ax = b linear algorithm (faster and more accurate)
 
-def als(R, test_data, I, I2, lamb, num_features, num_iters, num_users, num_items):
+def als(R, test_data, I, lamb, num_features, num_iters, num_users, num_items):
     # Random initialize U and V
     U = 3 * np.random.rand(num_users, num_features)
     V = 3 * np.random.rand(num_items, num_features)
@@ -41,6 +41,6 @@ def als(R, test_data, I, I2, lamb, num_features, num_iters, num_users, num_items
         update_U(R, U, V, I, lamb, num_features)
         update_V(R, U, V, I, lamb, num_features)
 
-        rmse = ALS_Evaluation.rmse(I2, test_data, U, V)
+        rmse = ALS_Evaluation.rmse(test_data, U, V)
         print(f"[ALS] Iteration {k+1}: RMSE = {rmse:.4f}")
     return (U, V)
