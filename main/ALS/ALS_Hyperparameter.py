@@ -19,9 +19,9 @@ def hyperparameter_tuning_grid(R, test_data, num_users, num_items, I, I3):
                     file.write(f"Training ALS: features={rank}, lambda={reg}, iterations={num_iter}")
 
                     #U, V = ALS_Training.als(R, V, num_users, num_items, I, num_iter, rank, reg)
-                    U, V = ALS_Training.als(R, test_data, I, I3, reg, rank, num_iter, num_users, num_items)
+                    U, V = ALS_Training.als(R, test_data, I, reg, rank, num_iter, num_users, num_items)
                     
-                    rmse = ALS_Evaluation.rmse(I3, test_data, U, V)
+                    rmse = ALS_Evaluation.rmse(test_data, U, V)
                     print(f"Validation RMSE = {rmse:.4f}")
                     file.write(f"\tValidation RMSE = {rmse:.4f}\n")
 
